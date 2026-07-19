@@ -1,7 +1,8 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
+import { motion, AnimatePresence } from 'framer-motion'
 import {
   ArrowRight,
   BarChart3,
@@ -123,7 +124,58 @@ const PLANS = [
 ]
 
 export default function HomePage() {
+  const [showSplash, setShowSplash] = useState(true)
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShowSplash(false), 2000)
+    return () => clearTimeout(timer)
+  }, [])
+
   return (
+    <>
+      {/* Splash Screen */}
+      <AnimatePresence>
+        {showSplash && (
+          <motion.div
+            key="splash"
+            className="fixed inset-0 z-[200] flex items-center justify-center bg-white"
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5, ease: 'easeOut' }}
+          >
+            <div className="flex flex-col items-center gap-4">
+              {/* Logo V animada */}
+              <motion.div
+                initial={{ scale: 0, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.5, ease: 'easeOut' }}
+              >
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logo.png" alt="VentaFlow" className="h-16 w-auto" />
+              </motion.div>
+
+              {/* Texto que aparece después */}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, delay: 0.6, ease: 'easeOut' }}
+                className="text-sm font-semibold tracking-tight text-[#1a2b4a]"
+              >
+                VentaFlow
+              </motion.p>
+
+              <motion.p
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.4, delay: 1.0 }}
+                className="text-xs text-[#6b7c99]"
+              >
+                Gestiona. Vende. Crece.
+              </motion.p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
     <main className="min-h-screen bg-white text-[#1a2b4a]">
       {/* Nav */}
       <header className="fixed top-0 z-50 w-full border-b border-[#e8edf3] bg-white/80 backdrop-blur-xl">
@@ -464,5 +516,6 @@ export default function HomePage() {
         </div>
       </footer>
     </main>
+    </>
   )
 }
