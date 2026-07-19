@@ -2,8 +2,8 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { LockKeyhole, Mail, ShieldCheck } from 'lucide-react'
-import './login.css'
+import { LockKeyhole, Mail, ArrowLeft } from 'lucide-react'
+import Link from 'next/link'
 
 export default function LoginPage() {
   const [email, setEmail] = useState('')
@@ -65,55 +65,56 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="login-root">
-      <div className="login-gradient" />
+    <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-4">
+      {/* Background glow */}
+      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.04),transparent_50%)]" />
 
-      <div className="login-container">
-        <div className="login-card">
-          <div className="login-badge">
-            <ShieldCheck size={14} />
-            ARM Global · Sistema de Merch
+      <div className="relative w-full max-w-sm">
+        {/* Back to home */}
+        <Link
+          href="/"
+          className="mb-8 inline-flex items-center gap-1.5 text-sm text-zinc-500 transition hover:text-zinc-300"
+        >
+          <ArrowLeft size={14} />
+          Volver al inicio
+        </Link>
+
+        {/* Card */}
+        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl backdrop-blur">
+          {/* Logo */}
+          <div className="mb-8 text-center">
+            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-xl font-black text-black shadow-lg shadow-amber-500/20">
+              VF
+            </div>
+            <h1 className="text-2xl font-black tracking-tight text-white">VentaFlow</h1>
+            <p className="mt-1 text-sm text-zinc-500">Ingresa a tu cuenta</p>
           </div>
 
-          <div className="login-logo-wrap">
-            <div className="login-logo-box">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="ARM Merch" style={{width: '48px', height: 'auto'}} />
-            </div>
-
+          {/* Form */}
+          <div className="space-y-4">
             <div>
-              <h1 className="login-title">
-                ARM <span>Merch</span>
-              </h1>
-
-              <p className="login-subtitle">
-                Plataforma de merchandising y operaciones
-              </p>
-            </div>
-          </div>
-
-          <div className="login-form">
-            <div className="login-field">
-              <label>Correo electrónico</label>
-
-              <div className="login-input-wrap">
-                <Mail size={18} />
+              <label className="mb-1.5 block text-xs font-semibold text-zinc-400">
+                Correo electrónico
+              </label>
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 focus-within:border-amber-500/50">
+                <Mail size={16} className="text-zinc-500" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="tu@armglobal.org"
+                  placeholder="tu@negocio.cl"
                   autoComplete="email"
+                  className="flex-1 bg-transparent text-sm text-white placeholder-zinc-600 outline-none"
                 />
               </div>
             </div>
 
-            <div className="login-field">
-              <label>Contraseña</label>
-
-              <div className="login-input-wrap">
-                <LockKeyhole size={18} />
-
+            <div>
+              <label className="mb-1.5 block text-xs font-semibold text-zinc-400">
+                Contraseña
+              </label>
+              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 focus-within:border-amber-500/50">
+                <LockKeyhole size={16} className="text-zinc-500" />
                 <input
                   type="password"
                   value={password}
@@ -126,26 +127,42 @@ export default function LoginPage() {
                       handleLogin()
                     }
                   }}
+                  className="flex-1 bg-transparent text-sm text-white placeholder-zinc-600 outline-none"
                 />
               </div>
             </div>
 
-            {error && <div className="login-error">{error}</div>}
+            {error && (
+              <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-3 py-2 text-xs text-red-400">
+                {error}
+              </div>
+            )}
 
             <button
               type="button"
               onClick={handleLogin}
               disabled={loading}
-              className="login-button"
+              className="mt-2 w-full rounded-xl bg-amber-500 py-3 text-sm font-bold text-black shadow-lg shadow-amber-500/20 transition hover:bg-amber-400 disabled:opacity-50"
             >
               {loading ? 'Verificando...' : 'Ingresar'}
             </button>
           </div>
 
-          <div className="login-footer">
-            Acceso restringido al equipo autorizado
+          {/* Forgot password */}
+          <div className="mt-5 text-center">
+            <Link
+              href="/forgot-password"
+              className="text-xs text-zinc-500 transition hover:text-amber-400"
+            >
+              ¿Olvidaste tu contraseña?
+            </Link>
           </div>
         </div>
+
+        {/* Footer */}
+        <p className="mt-6 text-center text-xs text-zinc-600">
+          © {new Date().getFullYear()} VentaFlow · ventaflow.cl
+        </p>
       </div>
     </main>
   )
