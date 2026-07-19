@@ -602,11 +602,11 @@ export default function ProductionPage() {
                 Vista operacional limitada
               </p>
               <h2 className="mt-2 text-xl font-black text-white">
-                Perfil voluntario
+                Perfil colaborador
               </h2>
               <p className="mt-1 max-w-2xl text-sm leading-6 text-zinc-400">
                 Puedes revisar pedidos, abrir el tracking del cliente y apoyar el flujo de entrega.
-                Las métricas globales están disponibles para administradores de campus y super administradores.
+                Las métricas globales están disponibles para administradores y super administradores.
               </p>
             </div>
 

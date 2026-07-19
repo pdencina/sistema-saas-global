@@ -428,7 +428,7 @@ export default function DashboardPage() {
               Dashboard
             </h1>
             <p className="mt-1 text-sm text-zinc-500">
-              {role === 'super_admin' || role === 'adm_merch' ? 'Vista global · Todos los campus' : 'Vista de tu campus'}
+              {role === 'super_admin' || role === 'adm_merch' ? 'Vista global · Todas las sucursales' : 'Vista de tu sucursal'}
             </p>
           </div>
 

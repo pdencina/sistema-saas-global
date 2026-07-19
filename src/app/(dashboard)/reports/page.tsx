@@ -41,7 +41,7 @@ export default function ReportsPage() {
             .maybeSingle()
           setCampusName(campusData?.name ?? null)
         } else {
-          setCampusName(hasGlobalAccess ? 'Todos los campus' : null)
+          setCampusName(hasGlobalAccess ? 'Todas las sucursales' : null)
         }
 
         // ── ÓRDENES ──

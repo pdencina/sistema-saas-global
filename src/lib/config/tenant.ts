@@ -93,8 +93,8 @@ const DEFAULT_BRANDING: TenantBranding = {
 const DEFAULT_TERMINOLOGY: TenantTerminology = {
   branch: 'Sucursal',
   branchPlural: 'Sucursales',
-  seller: 'Vendedor',
-  sellerPlural: 'Vendedores',
+  seller: 'Colaborador',
+  sellerPlural: 'Colaboradores',
   branchAdmin: 'Administrador',
   manager: 'Gerente',
   business: 'Negocio',
@@ -200,8 +200,8 @@ export const TERMINOLOGY_PRESETS: Record<BusinessType, Partial<TenantTerminology
   general: {
     branch: 'Sucursal',
     branchPlural: 'Sucursales',
-    seller: 'Vendedor',
-    sellerPlural: 'Vendedores',
+    seller: 'Colaborador',
+    sellerPlural: 'Colaboradores',
     branchAdmin: 'Administrador',
     manager: 'Gerente',
     business: 'Negocio',

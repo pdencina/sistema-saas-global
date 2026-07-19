@@ -359,9 +359,9 @@ export default function UsersPage() {
                         onChange={e => updateRole(user.id, e.target.value as Role)}
                         className={`text-xs font-semibold px-2 py-1 rounded-lg border cursor-pointer bg-transparent focus:outline-none transition ${ROLE_STYLES[(user.role as Role) ?? 'voluntario']}`}
                       >
-                        <option value="voluntario">Voluntario</option>
+                        <option value="voluntario">Colaborador</option>
                         <option value="admin">Admin</option>
-                        <option value="adm_merch">ADM Merch</option>
+                        <option value="adm_merch">Gerente</option>
                         <option value="super_admin">Super Admin</option>
                       </select>
                     </td>
@@ -374,7 +374,7 @@ export default function UsersPage() {
                           onChange={e => updateCampus(user.id, e.target.value)}
                           className="text-xs bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-lg px-2 py-1 focus:outline-none focus:border-amber-500 transition max-w-[140px]"
                         >
-                          <option value="">Sin campus</option>
+                          <option value="">Sin sucursal</option>
                           {campus.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                         </select>
                         {user.campusName && (

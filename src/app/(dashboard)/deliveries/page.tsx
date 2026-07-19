@@ -66,7 +66,7 @@ const STATUS_CFG = {
 
 // ─── Role-based action config ─────────────────────────────────────────────────
 // Super Admin: pending → ready (equipo ARM produce y avisa que está listo)
-// Admin/Voluntario: ready → delivered (campus recibe y entrega al cliente)
+// Admin/Colaborador: ready → delivered (sucursal recibe y entrega al cliente)
 function getAction(status: DeliveryStatus, role: string) {
   if (status === 'pending' && role === 'super_admin') {
     return {
@@ -363,7 +363,7 @@ export default function DeliveriesPage() {
       .not('delivery_status', 'is', null)
       .order('created_at', { ascending: false })
 
-    // Admin/Voluntario only see their campus
+    // Admin/Colaborador only see their branch
     if (currentRole !== 'super_admin' && currentCampusId) {
       query = query.eq('campus_id', currentCampusId)
     }
@@ -478,8 +478,8 @@ export default function DeliveriesPage() {
           <h1 className="text-lg font-semibold text-white">Pedidos pendientes de entrega</h1>
           <p className="mt-0.5 text-xs text-zinc-500">
             {role === 'super_admin'
-              ? 'Vista global · todos los campus'
-              : 'Pedidos de tu campus para entregar'}
+              ? 'Vista global · todas las sucursales'
+              : 'Pedidos de tu sucursal para entregar'}
           </p>
         </div>
         <button
@@ -555,7 +555,7 @@ export default function DeliveriesPage() {
             value={campusFilter} onChange={e => setCampusFilter(e.target.value)}
             className="h-9 rounded-xl border border-zinc-800 bg-zinc-900 px-3 text-sm text-zinc-300 outline-none"
           >
-            <option value="">Todos los campus</option>
+            <option value="">Todas las sucursales</option>
             {campuses.map(([id, name]) => <option key={id} value={id}>{name}</option>)}
           </select>
         )}

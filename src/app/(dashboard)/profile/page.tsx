@@ -33,7 +33,7 @@ const ROLE_LABEL: Record<string, string> = {
   super_admin: 'Super Admin',
   adm_merch: 'ADM Merch',
   admin: 'Administrador',
-  voluntario: 'Voluntario',
+  voluntario: 'Colaborador',
 }
 
 type PermissionMap = Record<string, boolean>

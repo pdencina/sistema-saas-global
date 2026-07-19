@@ -137,7 +137,7 @@ const PERMISSION_GROUPS = [
         description: 'Acceso a reportes y analíticas',
         permissions: [
           { key: 'reports.view',        label: 'Ver reportes' },
-          { key: 'reports.all_campus',  label: 'Ver reportes de todos los campus' },
+          { key: 'reports.all_campus',  label: 'Ver reportes de todas las sucursales' },
           { key: 'reports.export',      label: 'Exportar reportes' },
         ]
       },
@@ -150,7 +150,7 @@ const PERMISSION_GROUPS = [
           { key: 'close_day.view',      label: 'Ver cierre de caja' },
           { key: 'close_day.open',      label: 'Abrir caja' },
           { key: 'close_day.close',     label: 'Cerrar caja' },
-          { key: 'close_day.all',       label: 'Ver cierres de todos los campus' },
+          { key: 'close_day.all',       label: 'Ver cierres de todas las sucursales' },
         ]
       },
       {

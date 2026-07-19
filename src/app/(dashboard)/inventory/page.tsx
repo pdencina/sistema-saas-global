@@ -218,7 +218,7 @@ export default function InventoryPage() {
         }
 
         if (role === 'super_admin' || role === 'adm_merch') {
-          currentCampusName = 'Todos los campus'
+          currentCampusName = 'Todas las sucursales'
         }
 
         setUserRole(role)

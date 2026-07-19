@@ -49,8 +49,8 @@ export default function CampusSelector({ role, userCampusId }: CampusSelectorPro
   }, [campusList.length, setCampusList])
 
   const displayName = selectedCampusId
-    ? selectedCampusName ?? 'Campus seleccionado'
-    : 'Todos los campus'
+    ? selectedCampusName ?? 'Sucursal seleccionada'
+    : 'Todas las sucursales'
 
   return (
     <div className="relative">
@@ -95,7 +95,7 @@ export default function CampusSelector({ role, userCampusId }: CampusSelectorPro
               >
                 <Globe size={16} />
                 <div>
-                  <p className="font-medium">Todos los campus</p>
+                  <p className="font-medium">Todas las sucursales</p>
                   <p className="text-[10px] text-zinc-500">Vista global consolidada</p>
                 </div>
               </button>
