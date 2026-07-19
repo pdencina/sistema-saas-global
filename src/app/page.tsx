@@ -13,7 +13,6 @@ import {
   Users,
   Zap,
   ChevronRight,
-  Play,
 } from 'lucide-react'
 
 const FEATURES = [
@@ -87,8 +86,7 @@ const PLANS = [
 export default function HomePage() {
   return (
     <main className="min-h-screen bg-[#09090b] text-white selection:bg-[#BEFF00]/20 selection:text-[#BEFF00]">
-      {/* Noise texture overlay */}
-      <div className="pointer-events-none fixed inset-0 z-[1] opacity-[0.015]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'0.5\'/%3E%3C/svg%3E")' }} />
+
 
       {/* Nav */}
       <header className="sticky top-0 z-50 border-b border-white/[0.04] bg-[#09090b]/90 backdrop-blur-2xl">
@@ -132,12 +130,6 @@ export default function HomePage() {
 
         <div className="relative z-10 mx-auto max-w-7xl px-6">
           <div className="mx-auto max-w-3xl text-center">
-            {/* Badge */}
-            <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-[#BEFF00]/20 bg-[#BEFF00]/[0.04] px-4 py-1.5 text-xs font-medium text-[#BEFF00]">
-              <div className="h-1.5 w-1.5 rounded-full bg-[#BEFF00] animate-pulse" />
-              Nuevo: IA predictiva para tu inventario
-            </div>
-
             <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-black leading-[0.95] tracking-tight">
               El sistema que tu
               <br />
@@ -159,23 +151,16 @@ export default function HomePage() {
                 Probar 14 días gratis
                 <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
               </Link>
-              <button className="flex items-center gap-2 text-sm font-medium text-zinc-400 transition hover:text-white">
-                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10">
-                  <Play size={12} fill="currentColor" />
-                </div>
-                Ver demo en 2 min
-              </button>
+              <a
+              href="#producto"
+              className="text-sm font-medium text-zinc-400 transition hover:text-white"
+            >
+              Conocer más
+            </a>
             </div>
           </div>
 
-          {/* Social proof */}
-          <div className="mx-auto mt-20 flex max-w-lg flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-zinc-600">
-            <span>Usado por negocios en</span>
-            <span className="font-semibold text-zinc-400">Santiago</span>
-            <span className="font-semibold text-zinc-400">Viña del Mar</span>
-            <span className="font-semibold text-zinc-400">Concepción</span>
-            <span className="font-semibold text-zinc-400">+más</span>
-          </div>
+
         </div>
       </section>
 
