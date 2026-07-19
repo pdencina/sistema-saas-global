@@ -1,0 +1,486 @@
+'use client'
+
+import { useEffect, useMemo, useState } from 'react'
+import Link from 'next/link'
+import { createClient } from '@/lib/supabase/client'
+import { useCampusSelector } from '@/lib/hooks/use-campus-selector'
+import { Search } from 'lucide-react'
+
+type OrderRow = {
+  id: string
+  order_number: number | string
+  campus_id: string | null
+  seller_id?: string | null
+  payment_method: string | null
+  total: number
+  amount_paid?: number | null
+  balance_due?: number | null
+  payment_type?: string | null
+  discount?: number | null
+  created_at: string
+  status?: string | null
+  notes?: string | null
+}
+
+type CampusRow = {
+  id: string
+  name: string
+}
+
+function formatCurrency(value: number) {
+  return new Intl.NumberFormat('es-CL', {
+    style: 'currency',
+    currency: 'CLP',
+    maximumFractionDigits: 0,
+  }).format(value || 0)
+}
+
+function formatDate(value: string) {
+  return new Date(value).toLocaleString('es-CL')
+}
+
+function getStatusLabel(status?: string | null) {
+  const value = String(status ?? '').toLowerCase()
+
+  const labels: Record<string, string> = {
+    paid: 'Pagado',
+    pending: 'Pendiente pago',
+    pending_transfer: 'Transferencia pendiente',
+    rejected: 'Rechazada',
+    cancelled: 'Cancelada',
+    refunded: 'Reembolsada',
+  }
+
+  return labels[value] ?? (status || '—')
+}
+
+function getStatusClass(status?: string | null) {
+  const value = String(status ?? '').toLowerCase()
+
+  if (value === 'paid') {
+    return 'border-green-500/20 bg-green-500/10 text-green-300'
+  }
+
+  if (value === 'pending_transfer') {
+    return 'border-amber-500/25 bg-amber-500/10 text-amber-300'
+  }
+
+  if (value === 'pending') {
+    return 'border-blue-500/20 bg-blue-500/10 text-blue-300'
+  }
+
+  if (value === 'rejected' || value === 'cancelled') {
+    return 'border-red-500/20 bg-red-500/10 text-red-300'
+  }
+
+  return 'border-zinc-700 bg-zinc-800 text-zinc-300'
+}
+
+function getPaymentLabel(payment?: string | null) {
+  const value = String(payment ?? '').toLowerCase()
+
+  const labels: Record<string, string> = {
+    efectivo: 'Efectivo',
+    transferencia: 'Transferencia',
+    sumup: 'SumUp',
+    solo: 'SumUp Solo',
+    link: 'Link de pago',
+    card: 'Tarjeta',
+  }
+
+  return labels[value] ?? (payment || 'Sin definir')
+}
+
+export default function OrdersPage() {
+  const supabase = createClient()
+  const { selectedCampusId } = useCampusSelector()
+
+  const [orders, setOrders] = useState<OrderRow[]>([])
+  const [campuses, setCampuses] = useState<CampusRow[]>([])
+  const [userRole, setUserRole] = useState('')
+  const [loading, setLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+
+  const [search, setSearch] = useState('')
+  const [statusFilter, setStatusFilter] = useState('paid')
+  const [paymentFilter, setPaymentFilter] = useState('')
+
+  useEffect(() => {
+    async function load() {
+      setLoading(true)
+      setError(null)
+
+      const {
+        data: { session },
+        error: sessionError,
+      } = await supabase.auth.getSession()
+
+      if (sessionError || !session) {
+        setError('No autenticado')
+        setLoading(false)
+        return
+      }
+
+      const { data: profile, error: profileError } = await supabase
+        .from('profiles')
+        .select('role, campus_id')
+        .eq('id', session.user.id)
+        .single()
+
+      if (profileError || !profile) {
+        setError(profileError?.message ?? 'No se pudo cargar el perfil')
+        setLoading(false)
+        return
+      }
+
+      setUserRole(profile.role ?? '')
+
+      let ordersQuery = supabase
+        .from('orders')
+        .select(`
+          id,
+          order_number,
+          campus_id,
+          seller_id,
+          payment_method,
+          total,
+          amount_paid,
+          balance_due,
+          payment_type,
+          discount,
+          created_at,
+          status,
+          notes
+        `)
+        .order('created_at', { ascending: false })
+
+      let canViewAllCampus = profile.role === 'super_admin' || profile.role === 'adm_merch'
+
+      if (!canViewAllCampus) {
+        const { data: allCampusPermission } = await supabase
+          .from('module_permissions')
+          .select('enabled')
+          .eq('role', profile.role)
+          .eq('module', 'orders.all_campus')
+          .maybeSingle()
+
+        canViewAllCampus = allCampusPermission?.enabled === true
+      }
+
+      if (!canViewAllCampus && profile.campus_id) {
+        ordersQuery = ordersQuery.eq('campus_id', profile.campus_id)
+      }
+
+      if (!canViewAllCampus && !profile.campus_id) {
+        ordersQuery = ordersQuery.eq('campus_id', '__none__')
+      }
+
+      const [
+        { data: ordersData, error: ordersError },
+        { data: campusData, error: campusError },
+      ] = await Promise.all([
+        ordersQuery,
+        supabase
+          .from('campus')
+          .select('id, name')
+          .order('name'),
+      ])
+
+      if (ordersError) {
+        setError(ordersError.message)
+        setLoading(false)
+        return
+      }
+
+      if (campusError) {
+        setError(campusError.message)
+        setLoading(false)
+        return
+      }
+
+      setOrders((ordersData ?? []) as OrderRow[])
+      setCampuses((campusData ?? []) as CampusRow[])
+      setLoading(false)
+    }
+
+    load()
+
+    // ── Realtime: actualizar órdenes cuando SumUp confirma el pago ──────────
+    const channel = supabase
+      .channel('orders-realtime')
+      .on(
+        'postgres_changes',
+        { event: 'UPDATE', schema: 'public', table: 'orders' },
+        (payload) => {
+          const updated = payload.new as OrderRow
+          setOrders(prev => prev.map(o =>
+            o.id === updated.id ? { ...o, status: updated.status, notes: updated.notes } : o
+          ))
+        }
+      )
+      .subscribe()
+
+    return () => { supabase.removeChannel(channel) }
+  }, [supabase])
+
+  const campusMap = useMemo(() => {
+    const map = new Map<string, string>()
+    for (const campus of campuses) {
+      map.set(campus.id, campus.name)
+    }
+    return map
+  }, [campuses])
+
+  const statusOptions = useMemo(() => {
+    return Array.from(
+      new Set(orders.map((o) => o.status).filter(Boolean))
+    ) as string[]
+  }, [orders])
+
+  const paymentOptions = useMemo(() => {
+    return Array.from(
+      new Set(orders.map((o) => o.payment_method).filter(Boolean))
+    ) as string[]
+  }, [orders])
+
+  const filteredOrders = useMemo(() => {
+    // Filtrar por campus selector para roles globales
+    const isGlobalRole = userRole === 'super_admin' || userRole === 'adm_merch'
+    const campusFiltered = isGlobalRole && selectedCampusId
+      ? orders.filter((o) => o.campus_id === selectedCampusId)
+      : orders
+
+    return campusFiltered.filter((order) => {
+      const text = search.toLowerCase().trim()
+      const campusName = order.campus_id ? campusMap.get(order.campus_id) ?? '' : ''
+
+      const matchesSearch =
+        !text ||
+        String(order.order_number).toLowerCase().includes(text) ||
+        (order.payment_method ?? '').toLowerCase().includes(text) ||
+        (order.status ?? '').toLowerCase().includes(text) ||
+        campusName.toLowerCase().includes(text)
+
+      const matchesStatus =
+        !statusFilter || order.status === statusFilter
+
+      const matchesPayment =
+        !paymentFilter || order.payment_method === paymentFilter
+
+      return matchesSearch && matchesStatus && matchesPayment
+    })
+  }, [orders, search, statusFilter, paymentFilter, campusMap, selectedCampusId, userRole])
+
+  if (loading) {
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center">
+        <div className="h-10 w-10 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />
+      </div>
+    )
+  }
+
+  if (error) {
+    return (
+      <div className="rounded-2xl border border-red-900/40 bg-red-950/30 p-6 text-red-200">
+        <p className="text-sm font-medium">Error cargando órdenes</p>
+        <p className="mt-2 text-sm text-red-300/80">{error}</p>
+      </div>
+    )
+  }
+
+  return (
+    <div className="space-y-6">
+      <div>
+        <h1 className="text-xl font-bold text-white">Órdenes</h1>
+        <p className="mt-1 text-sm text-zinc-500">
+          {filteredOrders.length} órdenes encontradas
+        </p>
+      </div>
+
+      <div className="flex flex-col gap-4 xl:flex-row">
+        <div className="relative flex-1">
+          <Search
+            size={18}
+            className="absolute left-4 top-1/2 -translate-y-1/2 text-zinc-500"
+          />
+          <input
+            type="text"
+            placeholder="Buscar por número, estado, pago o campus..."
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            className="w-full rounded-2xl border border-zinc-700 bg-zinc-800 px-12 py-3 text-sm text-white placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
+          />
+        </div>
+
+        <select
+          value={statusFilter}
+          onChange={(e) => setStatusFilter(e.target.value)}
+          className="rounded-2xl border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-white focus:border-amber-500 focus:outline-none"
+        >
+          <option value="">Todos los estados</option>
+          {statusOptions.map((status) => (
+            <option key={status} value={status}>
+              {getStatusLabel(status)}
+            </option>
+          ))}
+        </select>
+
+        <select
+          value={paymentFilter}
+          onChange={(e) => setPaymentFilter(e.target.value)}
+          className="rounded-2xl border border-zinc-700 bg-zinc-800 px-4 py-3 text-sm text-white focus:border-amber-500 focus:outline-none"
+        >
+          <option value="">Todos los pagos</option>
+          {paymentOptions.map((payment) => (
+            <option key={payment} value={payment}>
+              {getPaymentLabel(payment)}
+            </option>
+          ))}
+        </select>
+      </div>
+
+      <div className="hidden overflow-hidden rounded-2xl border border-zinc-700/60 bg-zinc-900/50 xl:block">
+        <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_180px] gap-4 border-b border-zinc-800 px-6 py-4 text-sm text-zinc-400">
+          <div>N° Orden</div>
+          <div>Campus</div>
+          <div>Método pago</div>
+          <div>Total</div>
+          <div>Estado</div>
+          <div>Fecha</div>
+          <div>Acción</div>
+        </div>
+
+        {filteredOrders.length === 0 ? (
+          <div className="px-6 py-10 text-sm text-zinc-500">
+            No hay órdenes para mostrar.
+          </div>
+        ) : (
+          filteredOrders.map((order) => (
+            <div
+              key={order.id}
+              className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_180px] gap-4 border-b border-zinc-800/70 px-6 py-4 last:border-b-0"
+            >
+              <div className="font-medium text-white">
+                #{order.order_number}
+              </div>
+
+              <div className="text-zinc-300">
+                {order.campus_id ? campusMap.get(order.campus_id) ?? 'Sin campus' : 'Sin campus'}
+              </div>
+
+              <div className="text-zinc-300">
+                {getPaymentLabel(order.payment_method)}
+              </div>
+
+              <div className="font-semibold text-amber-400">
+                {order.payment_type === 'deposit_50' ? (
+                  <span className="flex flex-col items-end">
+                    <span>{formatCurrency(Number(order.amount_paid ?? 0))}</span>
+                    <span className="text-[10px] text-zinc-500">de {formatCurrency(Number(order.total ?? 0))}</span>
+                  </span>
+                ) : (
+                  formatCurrency(Number(order.total ?? 0))
+                )}
+              </div>
+
+              <div>
+                <span className={`rounded-lg border px-3 py-1 text-sm font-semibold ${getStatusClass(order.status)}`}>
+                  {getStatusLabel(order.status)}
+                </span>
+              </div>
+
+              <div className="text-zinc-400">
+                {formatDate(order.created_at)}
+              </div>
+
+              <div>
+                <Link
+                  href={`/orders/${order.id}`}
+                  className="inline-flex items-center justify-center rounded-xl bg-blue-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-blue-500"
+                >
+                  Ver detalle
+                </Link>
+              </div>
+            </div>
+          ))
+        )}
+      </div>
+
+      <div className="grid grid-cols-1 gap-4 xl:hidden">
+        {filteredOrders.length === 0 ? (
+          <div className="rounded-2xl border border-zinc-700/60 bg-zinc-900/50 p-5 text-sm text-zinc-500">
+            No hay órdenes para mostrar.
+          </div>
+        ) : (
+          filteredOrders.map((order) => (
+            <div
+              key={order.id}
+              className="rounded-2xl border border-zinc-700/60 bg-zinc-900/50 p-4"
+            >
+              <div className="flex items-center justify-between gap-3">
+                <p className="font-semibold text-white">#{order.order_number}</p>
+                <span className={`rounded-lg border px-3 py-1 text-xs font-semibold ${getStatusClass(order.status)}`}>
+                  {getStatusLabel(order.status)}
+                </span>
+              </div>
+
+              <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
+                <div className="rounded-xl bg-zinc-950/50 px-3 py-2">
+                  <p className="text-[11px] uppercase tracking-wide text-zinc-500">Campus</p>
+                  <p className="mt-1 text-white">
+                    {order.campus_id ? campusMap.get(order.campus_id) ?? 'Sin campus' : 'Sin campus'}
+                  </p>
+                </div>
+
+                <div className="rounded-xl bg-zinc-950/50 px-3 py-2">
+                  <p className="text-[11px] uppercase tracking-wide text-zinc-500">Pago</p>
+                  <p className="mt-1 text-white">{getPaymentLabel(order.payment_method)}</p>
+                </div>
+
+                <div className="rounded-xl bg-zinc-950/50 px-3 py-2">
+                  <p className="text-[11px] uppercase tracking-wide text-zinc-500">Total</p>
+                  <p className="mt-1 font-semibold text-amber-400">
+                    {formatCurrency(Number(order.total ?? 0))}
+                  </p>
+                  {order.payment_type === 'deposit_50' && (
+                    <>
+                      <p className="mt-1 text-[10px] text-green-400">
+                        Pagado: {formatCurrency(Number(order.amount_paid ?? 0))}
+                      </p>
+                      {Number(order.balance_due ?? 0) > 0 && (
+                        <p className="text-[10px] text-amber-300">
+                          Saldo: {formatCurrency(Number(order.balance_due ?? 0))}
+                        </p>
+                      )}
+                    </>
+                  )}
+                </div>
+
+                <div className="rounded-xl bg-zinc-950/50 px-3 py-2">
+                  <p className="text-[11px] uppercase tracking-wide text-zinc-500">Fecha</p>
+                  <p className="mt-1 text-white">{formatDate(order.created_at)}</p>
+                </div>
+              </div>
+
+              <div className="mt-4">
+                <Link
+                  href={`/orders/${order.id}`}
+                  className="inline-flex w-full items-center justify-center rounded-xl bg-blue-600 px-4 py-2.5 text-sm font-semibold text-white transition hover:bg-blue-500"
+                >
+                  Ver detalle
+                </Link>
+              </div>
+
+              {order.notes && (
+                <div className="mt-3 rounded-xl bg-zinc-950/50 px-3 py-2">
+                  <p className="text-[11px] uppercase tracking-wide text-zinc-500">Nota</p>
+                  <p className="mt-1 text-sm text-zinc-300">{order.notes}</p>
+                </div>
+              )}
+            </div>
+          ))
+        )}
+      </div>
+    </div>
+  )
+}
