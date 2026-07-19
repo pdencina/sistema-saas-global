@@ -342,7 +342,7 @@ export default function HomePage() {
               Precio justo, sin letra chica.
             </motion.h2>
             <motion.p variants={fadeUp} custom={2} className="mt-3 text-sm text-[#6b7c99]">
-              14 días gratis en cualquier plan. Sin tarjeta. Cancela cuando quieras.
+              Planes claros desde el primer día. Sin costos ocultos.
             </motion.p>
           </motion.div>
 
