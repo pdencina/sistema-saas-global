@@ -2,7 +2,7 @@
 
 import { useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
-import { LockKeyhole, Mail, ArrowLeft } from 'lucide-react'
+import { LockKeyhole, Mail, ArrowLeft, Loader2 } from 'lucide-react'
 import Link from 'next/link'
 
 export default function LoginPage() {
@@ -65,56 +65,58 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-950 px-4">
-      {/* Background glow */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(245,158,11,0.04),transparent_50%)]" />
+    <main className="flex min-h-screen items-center justify-center bg-[#09090b] px-4">
+      {/* Subtle glow */}
+      <div className="pointer-events-none absolute left-1/2 top-1/3 -translate-x-1/2 -translate-y-1/2">
+        <div className="h-[400px] w-[500px] rounded-full bg-[#BEFF00]/[0.02] blur-[100px]" />
+      </div>
 
-      <div className="relative w-full max-w-sm">
-        {/* Back to home */}
+      <div className="relative z-10 w-full max-w-[360px]">
+        {/* Back */}
         <Link
           href="/"
-          className="mb-8 inline-flex items-center gap-1.5 text-sm text-zinc-500 transition hover:text-zinc-300"
+          className="mb-6 inline-flex items-center gap-1.5 text-xs font-medium text-zinc-600 transition hover:text-zinc-300"
         >
-          <ArrowLeft size={14} />
-          Volver al inicio
+          <ArrowLeft size={12} />
+          ventaflow.cl
         </Link>
 
         {/* Card */}
-        <div className="rounded-2xl border border-white/5 bg-white/[0.02] p-8 shadow-2xl backdrop-blur">
+        <div className="rounded-2xl border border-white/[0.05] bg-white/[0.02] p-8 backdrop-blur">
           {/* Logo */}
-          <div className="mb-8 text-center">
-            <div className="mx-auto mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-amber-400 to-amber-600 text-xl font-black text-black shadow-lg shadow-amber-500/20">
-              VF
+          <div className="mb-8">
+            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#BEFF00]">
+              <span className="text-lg font-black text-black">V</span>
             </div>
-            <h1 className="text-2xl font-black tracking-tight text-white">VentaFlow</h1>
-            <p className="mt-1 text-sm text-zinc-500">Ingresa a tu cuenta</p>
+            <h1 className="text-xl font-black tracking-tight">Bienvenido de vuelta</h1>
+            <p className="mt-1 text-sm text-zinc-500">Ingresa a tu cuenta de VentaFlow</p>
           </div>
 
           {/* Form */}
           <div className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-xs font-semibold text-zinc-400">
-                Correo electrónico
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
+                Email
               </label>
-              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 focus-within:border-amber-500/50">
-                <Mail size={16} className="text-zinc-500" />
+              <div className="flex items-center gap-2.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5 transition focus-within:border-[#BEFF00]/40">
+                <Mail size={15} className="text-zinc-600" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tu@negocio.cl"
                   autoComplete="email"
-                  className="flex-1 bg-transparent text-sm text-white placeholder-zinc-600 outline-none"
+                  className="flex-1 bg-transparent text-sm text-white placeholder-zinc-700 outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="mb-1.5 block text-xs font-semibold text-zinc-400">
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-zinc-500">
                 Contraseña
               </label>
-              <div className="flex items-center gap-2 rounded-xl border border-white/10 bg-white/[0.03] px-3 py-2.5 focus-within:border-amber-500/50">
-                <LockKeyhole size={16} className="text-zinc-500" />
+              <div className="flex items-center gap-2.5 rounded-lg border border-white/[0.06] bg-white/[0.02] px-3.5 py-2.5 transition focus-within:border-[#BEFF00]/40">
+                <LockKeyhole size={15} className="text-zinc-600" />
                 <input
                   type="password"
                   value={password}
@@ -127,13 +129,13 @@ export default function LoginPage() {
                       handleLogin()
                     }
                   }}
-                  className="flex-1 bg-transparent text-sm text-white placeholder-zinc-600 outline-none"
+                  className="flex-1 bg-transparent text-sm text-white placeholder-zinc-700 outline-none"
                 />
               </div>
             </div>
 
             {error && (
-              <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-3 py-2 text-xs text-red-400">
+              <div className="rounded-lg border border-red-500/10 bg-red-500/[0.04] px-3 py-2.5 text-xs text-red-400">
                 {error}
               </div>
             )}
@@ -142,17 +144,24 @@ export default function LoginPage() {
               type="button"
               onClick={handleLogin}
               disabled={loading}
-              className="mt-2 w-full rounded-xl bg-amber-500 py-3 text-sm font-bold text-black shadow-lg shadow-amber-500/20 transition hover:bg-amber-400 disabled:opacity-50"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-[#BEFF00] py-3 text-sm font-bold text-black transition hover:bg-[#d4ff4d] disabled:opacity-50"
             >
-              {loading ? 'Verificando...' : 'Ingresar'}
+              {loading ? (
+                <>
+                  <Loader2 size={14} className="animate-spin" />
+                  Verificando...
+                </>
+              ) : (
+                'Ingresar'
+              )}
             </button>
           </div>
 
-          {/* Forgot password */}
-          <div className="mt-5 text-center">
+          {/* Links */}
+          <div className="mt-5 flex items-center justify-between">
             <Link
               href="/forgot-password"
-              className="text-xs text-zinc-500 transition hover:text-amber-400"
+              className="text-[11px] text-zinc-600 transition hover:text-[#BEFF00]"
             >
               ¿Olvidaste tu contraseña?
             </Link>
@@ -160,8 +169,8 @@ export default function LoginPage() {
         </div>
 
         {/* Footer */}
-        <p className="mt-6 text-center text-xs text-zinc-600">
-          © {new Date().getFullYear()} VentaFlow · ventaflow.cl
+        <p className="mt-8 text-center text-[11px] text-zinc-700">
+          © {new Date().getFullYear()} VentaFlow
         </p>
       </div>
     </main>

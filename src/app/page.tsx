@@ -6,303 +6,330 @@ import {
   BarChart3,
   CheckCircle2,
   Globe,
-  Layers,
   LockKeyhole,
   Package,
   ShoppingCart,
   Smartphone,
-  Sparkles,
   Users,
   Zap,
+  ChevronRight,
+  Play,
 } from 'lucide-react'
 
 const FEATURES = [
   {
-    icon: <ShoppingCart size={22} />,
-    title: 'Punto de Venta',
-    desc: 'POS táctil, rápido e intuitivo. Descuentos, promociones y múltiples medios de pago.',
+    icon: <ShoppingCart size={20} />,
+    title: 'POS que vuela',
+    desc: 'Interfaz táctil diseñada para velocidad. Busca, cobra y cierra en segundos.',
   },
   {
-    icon: <Package size={22} />,
-    title: 'Inventario inteligente',
-    desc: 'Control de stock en tiempo real, alertas automáticas y transferencias entre sucursales.',
+    icon: <Package size={20} />,
+    title: 'Inventario vivo',
+    desc: 'Stock actualizado en tiempo real. Alertas, movimientos y transferencias automáticas.',
   },
   {
-    icon: <Users size={22} />,
-    title: 'Multi-sucursal',
-    desc: 'Gestiona todas tus ubicaciones desde un solo lugar. Cada equipo ve solo lo suyo.',
+    icon: <Users size={20} />,
+    title: 'Multi-local nativo',
+    desc: 'N sucursales, una plataforma. Cada equipo ve solo lo que necesita.',
   },
   {
-    icon: <BarChart3 size={22} />,
-    title: 'Reportes y analytics',
-    desc: 'Ventas, márgenes, productos top y tendencias. Datos para tomar decisiones.',
+    icon: <BarChart3 size={20} />,
+    title: 'Datos que importan',
+    desc: 'No más Excel. Dashboards en vivo con lo que necesitas para decidir.',
   },
   {
-    icon: <LockKeyhole size={22} />,
-    title: 'Permisos granulares',
-    desc: '60+ permisos configurables. Controla exactamente qué puede hacer cada rol.',
+    icon: <LockKeyhole size={20} />,
+    title: 'Control total',
+    desc: '60+ permisos. Decide exactamente quién puede ver, vender o modificar.',
   },
   {
-    icon: <Smartphone size={22} />,
-    title: 'WhatsApp integrado',
-    desc: 'Notifica pedidos listos, envía links de pago y boletas por WhatsApp automáticamente.',
+    icon: <Smartphone size={20} />,
+    title: 'WhatsApp nativo',
+    desc: 'Boletas, links de pago y notificaciones directo al celular de tu cliente.',
   },
 ]
 
-const BUSINESS_TYPES = [
-  { emoji: '🔧', name: 'Ferreterías' },
-  { emoji: '☕', name: 'Cafeterías' },
-  { emoji: '👕', name: 'Tiendas de ropa' },
-  { emoji: '🛒', name: 'Almacenes' },
-  { emoji: '💊', name: 'Farmacias' },
-  { emoji: '🍕', name: 'Restaurantes' },
-  { emoji: '📚', name: 'Librerías' },
-  { emoji: '🎮', name: 'Tiendas tech' },
+const VERTICALS = [
+  { name: 'Ferreterías', active: true },
+  { name: 'Cafeterías', active: true },
+  { name: 'Tiendas de ropa', active: true },
+  { name: 'Almacenes', active: true },
+  { name: 'Restaurantes', active: false },
+  { name: 'Librerías', active: false },
+  { name: 'Farmacias', active: false },
+  { name: 'Bodegas', active: false },
 ]
 
 const PLANS = [
   {
     name: 'Starter',
     price: '19.990',
-    period: '/mes',
-    desc: 'Para negocios que inician',
-    features: ['1 sucursal', '3 usuarios', 'POS completo', 'Inventario', 'Reportes básicos'],
-    cta: 'Comenzar gratis',
+    desc: '1 local · 3 usuarios',
+    features: ['POS completo', 'Inventario', 'Reportes básicos', 'Soporte email'],
     highlighted: false,
   },
   {
     name: 'Pro',
     price: '49.990',
-    period: '/mes',
-    desc: 'Para negocios en crecimiento',
-    features: ['5 sucursales', '15 usuarios', 'Todo Starter +', 'WhatsApp', 'Analytics avanzados', 'Pagos con tarjeta'],
-    cta: 'Probar 14 días gratis',
+    desc: '5 locales · 15 usuarios',
+    features: ['Todo Starter +', 'WhatsApp', 'Analytics', 'Pagos con tarjeta', 'Multi-local', 'Transferencias'],
     highlighted: true,
   },
   {
     name: 'Enterprise',
-    price: 'Conversemos',
-    period: '',
-    desc: 'Para operaciones grandes',
-    features: ['Sucursales ilimitadas', 'Usuarios ilimitados', 'Todo Pro +', 'IA e insights', 'API personalizada', 'Soporte dedicado'],
-    cta: 'Contactar ventas',
+    price: 'A medida',
+    desc: 'Sin límites',
+    features: ['Todo Pro +', 'IA + Forecast', 'API dedicada', 'Onboarding personalizado', 'SLA garantizado'],
     highlighted: false,
   },
 ]
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-zinc-950 text-white">
+    <main className="min-h-screen bg-[#09090b] text-white selection:bg-[#BEFF00]/20 selection:text-[#BEFF00]">
+      {/* Noise texture overlay */}
+      <div className="pointer-events-none fixed inset-0 z-[1] opacity-[0.015]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg viewBox=\'0 0 200 200\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cfilter id=\'noise\'%3E%3CfeTurbulence type=\'fractalNoise\' baseFrequency=\'0.65\' numOctaves=\'3\' stitchTiles=\'stitch\'/%3E%3C/filter%3E%3Crect width=\'100%25\' height=\'100%25\' filter=\'url(%23noise)\' opacity=\'0.5\'/%3E%3C/svg%3E")' }} />
+
       {/* Nav */}
-      <header className="sticky top-0 z-50 border-b border-white/5 bg-zinc-950/80 backdrop-blur-xl">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-4">
-          <Link href="/" className="flex items-center gap-2.5">
-            <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-amber-400 to-amber-600 font-black text-black text-sm">
-              VF
+      <header className="sticky top-0 z-50 border-b border-white/[0.04] bg-[#09090b]/90 backdrop-blur-2xl">
+        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+          <Link href="/" className="group flex items-center gap-2.5">
+            <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#BEFF00] transition group-hover:scale-105">
+              <span className="text-sm font-black text-black">V</span>
             </div>
-            <span className="text-lg font-black tracking-tight">VentaFlow</span>
+            <span className="text-base font-bold tracking-tight">ventaflow</span>
           </Link>
 
-          <nav className="hidden items-center gap-6 text-sm text-zinc-400 md:flex">
-            <a href="#features" className="hover:text-white transition">Features</a>
-            <a href="#negocios" className="hover:text-white transition">Negocios</a>
-            <a href="#planes" className="hover:text-white transition">Planes</a>
+          <nav className="hidden items-center gap-8 text-[13px] font-medium text-zinc-500 md:flex">
+            <a href="#producto" className="transition hover:text-white">Producto</a>
+            <a href="#rubros" className="transition hover:text-white">Rubros</a>
+            <a href="#planes" className="transition hover:text-white">Planes</a>
           </nav>
 
           <div className="flex items-center gap-3">
             <Link
               href="/login"
-              className="rounded-xl border border-white/10 px-4 py-2 text-sm font-semibold text-zinc-300 transition hover:border-white/20 hover:text-white"
+              className="text-[13px] font-medium text-zinc-400 transition hover:text-white"
             >
               Ingresar
             </Link>
             <Link
               href="/login"
-              className="rounded-xl bg-amber-500 px-4 py-2 text-sm font-bold text-black transition hover:bg-amber-400"
+              className="rounded-lg bg-[#BEFF00] px-4 py-2 text-[13px] font-bold text-black transition hover:bg-[#d4ff4d]"
             >
-              Probar gratis
+              Empezar gratis
             </Link>
           </div>
         </div>
       </header>
 
       {/* Hero */}
-      <section className="relative overflow-hidden">
-        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top,rgba(245,158,11,0.08),transparent_50%)]" />
+      <section className="relative overflow-hidden pb-32 pt-24 lg:pt-36">
+        {/* Glow */}
+        <div className="pointer-events-none absolute left-1/2 top-0 -translate-x-1/2">
+          <div className="h-[600px] w-[800px] rounded-full bg-[#BEFF00]/[0.03] blur-[120px]" />
+        </div>
 
-        <div className="mx-auto max-w-6xl px-5 pb-20 pt-20 text-center lg:pt-28">
-          <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-amber-500/20 bg-amber-500/5 px-4 py-2 text-sm text-amber-400">
-            <Sparkles size={14} />
-            Plataforma todo-en-uno para tu negocio
+        <div className="relative z-10 mx-auto max-w-7xl px-6">
+          <div className="mx-auto max-w-3xl text-center">
+            {/* Badge */}
+            <div className="mx-auto mb-8 inline-flex items-center gap-2 rounded-full border border-[#BEFF00]/20 bg-[#BEFF00]/[0.04] px-4 py-1.5 text-xs font-medium text-[#BEFF00]">
+              <div className="h-1.5 w-1.5 rounded-full bg-[#BEFF00] animate-pulse" />
+              Nuevo: IA predictiva para tu inventario
+            </div>
+
+            <h1 className="text-[clamp(2.5rem,7vw,4.5rem)] font-black leading-[0.95] tracking-tight">
+              El sistema que tu
+              <br />
+              <span className="bg-gradient-to-r from-[#BEFF00] to-[#7FFF00] bg-clip-text text-transparent">
+                negocio merece.
+              </span>
+            </h1>
+
+            <p className="mx-auto mt-7 max-w-xl text-base leading-relaxed text-zinc-500 sm:text-lg">
+              Punto de venta, inventario y gestión multi-local en una sola herramienta.
+              Sin curva de aprendizaje. Sin contratos.
+            </p>
+
+            <div className="mt-10 flex flex-col items-center gap-4 sm:flex-row sm:justify-center">
+              <Link
+                href="/login"
+                className="group flex items-center gap-2 rounded-xl bg-[#BEFF00] px-7 py-3.5 text-sm font-bold text-black transition hover:bg-[#d4ff4d] hover:shadow-[0_0_40px_rgba(190,255,0,0.15)]"
+              >
+                Probar 14 días gratis
+                <ArrowRight size={16} className="transition group-hover:translate-x-0.5" />
+              </Link>
+              <button className="flex items-center gap-2 text-sm font-medium text-zinc-400 transition hover:text-white">
+                <div className="flex h-8 w-8 items-center justify-center rounded-full border border-white/10">
+                  <Play size={12} fill="currentColor" />
+                </div>
+                Ver demo en 2 min
+              </button>
+            </div>
           </div>
 
-          <h1 className="mx-auto max-w-4xl text-4xl font-black leading-[1.1] tracking-tight sm:text-5xl lg:text-7xl">
-            Tu punto de venta{' '}
-            <span className="bg-gradient-to-r from-amber-400 to-amber-600 bg-clip-text text-transparent">
-              inteligente
-            </span>
-          </h1>
-
-          <p className="mx-auto mt-6 max-w-2xl text-lg leading-8 text-zinc-400">
-            Gestiona ventas, inventario y sucursales desde una sola plataforma.
-            Diseñado para negocios reales en Latinoamérica.
-          </p>
-
-          <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
-            <Link
-              href="/login"
-              className="inline-flex items-center gap-2 rounded-2xl bg-amber-500 px-7 py-4 text-base font-bold text-black shadow-lg shadow-amber-500/20 transition hover:scale-[1.02] hover:bg-amber-400"
-            >
-              Comenzar gratis
-              <ArrowRight size={18} />
-            </Link>
-            <a
-              href="#features"
-              className="inline-flex items-center gap-2 rounded-2xl border border-white/10 px-7 py-4 text-base font-semibold text-zinc-300 transition hover:border-white/20 hover:text-white"
-            >
-              Ver features
-            </a>
-          </div>
-
-          {/* Stats */}
-          <div className="mx-auto mt-16 grid max-w-2xl grid-cols-3 gap-8 border-t border-white/5 pt-10">
-            <div>
-              <p className="text-3xl font-black text-amber-400">60+</p>
-              <p className="mt-1 text-sm text-zinc-500">Permisos configurables</p>
-            </div>
-            <div>
-              <p className="text-3xl font-black text-amber-400">Multi</p>
-              <p className="mt-1 text-sm text-zinc-500">Sucursales nativo</p>
-            </div>
-            <div>
-              <p className="text-3xl font-black text-amber-400">Real-time</p>
-              <p className="mt-1 text-sm text-zinc-500">Inventario en vivo</p>
-            </div>
+          {/* Social proof */}
+          <div className="mx-auto mt-20 flex max-w-lg flex-wrap items-center justify-center gap-x-8 gap-y-3 text-xs text-zinc-600">
+            <span>Usado por negocios en</span>
+            <span className="font-semibold text-zinc-400">Santiago</span>
+            <span className="font-semibold text-zinc-400">Viña del Mar</span>
+            <span className="font-semibold text-zinc-400">Concepción</span>
+            <span className="font-semibold text-zinc-400">+más</span>
           </div>
         </div>
       </section>
 
       {/* Features */}
-      <section id="features" className="border-t border-white/5 py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="text-center">
-            <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-              Todo lo que necesitas
+      <section id="producto" className="relative py-28">
+        <div className="absolute inset-0 border-t border-white/[0.04]" />
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="mb-16">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#BEFF00]">Producto</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+              Menos clicks, más ventas.
             </h2>
-            <p className="mt-3 text-zinc-400">
-              Herramientas profesionales sin la complejidad de software enterprise.
+            <p className="mt-3 max-w-lg text-zinc-500">
+              Cada feature está diseñada para que tu equipo pierda menos tiempo en el sistema y más tiempo atendiendo.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {FEATURES.map((f) => (
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {FEATURES.map((f, i) => (
               <div
                 key={f.title}
-                className="rounded-2xl border border-white/5 bg-white/[0.02] p-6 transition hover:border-amber-500/20 hover:bg-white/[0.04]"
+                className="group relative rounded-2xl border border-white/[0.04] bg-white/[0.01] p-6 transition hover:border-[#BEFF00]/20 hover:bg-[#BEFF00]/[0.02]"
               >
-                <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-amber-500/10 text-amber-400">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl border border-white/[0.06] bg-white/[0.03] text-zinc-400 transition group-hover:border-[#BEFF00]/30 group-hover:text-[#BEFF00]">
                   {f.icon}
                 </div>
-                <h3 className="text-lg font-bold">{f.title}</h3>
-                <p className="mt-2 text-sm leading-6 text-zinc-400">{f.desc}</p>
+                <h3 className="font-bold">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-zinc-500">{f.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* Business Types */}
-      <section id="negocios" className="border-t border-white/5 py-20">
-        <div className="mx-auto max-w-6xl px-5 text-center">
-          <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-            Para cualquier tipo de negocio
-          </h2>
-          <p className="mt-3 text-zinc-400">
-            La plataforma se adapta a tu rubro automáticamente.
-          </p>
+      {/* Verticals */}
+      <section id="rubros" className="relative py-28">
+        <div className="absolute inset-0 border-t border-white/[0.04]" />
 
-          <div className="mt-12 flex flex-wrap justify-center gap-3">
-            {BUSINESS_TYPES.map((b) => (
-              <div
-                key={b.name}
-                className="flex items-center gap-2 rounded-2xl border border-white/5 bg-white/[0.02] px-5 py-3 text-sm font-semibold text-zinc-300"
-              >
-                <span className="text-lg">{b.emoji}</span>
-                {b.name}
-              </div>
-            ))}
-          </div>
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="grid items-center gap-16 lg:grid-cols-2">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#BEFF00]">Rubros</p>
+              <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+                Un sistema,
+                <br />cualquier negocio.
+              </h2>
+              <p className="mt-4 max-w-md text-zinc-500">
+                La terminología, categorías y flujos se adaptan automáticamente a tu rubro.
+                No es genérico — es específico para ti.
+              </p>
 
-          <div className="mx-auto mt-10 max-w-xl rounded-2xl border border-amber-500/20 bg-amber-500/5 p-6">
-            <div className="flex items-start gap-3">
-              <Globe className="mt-0.5 shrink-0 text-amber-400" size={20} />
-              <div className="text-left">
-                <p className="font-bold text-amber-300">Terminología inteligente</p>
-                <p className="mt-1 text-sm text-zinc-400">
-                  La UI se adapta: una ferretería ve "Sucursales" y "Vendedores",
-                  una cafetería ve "Locales" y "Cajeros". Todo automático.
-                </p>
+              <div className="mt-8 rounded-xl border border-white/[0.06] bg-white/[0.02] p-4">
+                <p className="mb-3 text-xs font-semibold text-zinc-400">Ejemplo de adaptación:</p>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center justify-between">
+                    <span className="text-zinc-500">Ferretería →</span>
+                    <span className="font-medium">"Sucursales" · "Vendedores"</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-zinc-500">Cafetería →</span>
+                    <span className="font-medium">"Locales" · "Cajeros"</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-zinc-500">Tienda de ropa →</span>
+                    <span className="font-medium">"Tiendas" · "Asesores"</span>
+                  </div>
+                </div>
               </div>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {VERTICALS.map((v) => (
+                <div
+                  key={v.name}
+                  className={`rounded-xl border px-5 py-4 text-sm font-semibold ${
+                    v.active
+                      ? 'border-[#BEFF00]/20 bg-[#BEFF00]/[0.03] text-white'
+                      : 'border-white/[0.04] bg-white/[0.01] text-zinc-500'
+                  }`}
+                >
+                  {v.name}
+                  {v.active && (
+                    <p className="mt-1 text-xs font-normal text-[#BEFF00]/60">Demo disponible</p>
+                  )}
+                </div>
+              ))}
             </div>
           </div>
         </div>
       </section>
 
       {/* Pricing */}
-      <section id="planes" className="border-t border-white/5 py-20">
-        <div className="mx-auto max-w-6xl px-5">
-          <div className="text-center">
-            <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-              Planes simples, sin letra chica
+      <section id="planes" className="relative py-28">
+        <div className="absolute inset-0 border-t border-white/[0.04]" />
+
+        <div className="relative mx-auto max-w-7xl px-6">
+          <div className="mb-16 text-center">
+            <p className="text-xs font-bold uppercase tracking-[0.2em] text-[#BEFF00]">Planes</p>
+            <h2 className="mt-3 text-3xl font-black tracking-tight sm:text-4xl">
+              Precio justo, sin sorpresas.
             </h2>
-            <p className="mt-3 text-zinc-400">
-              Comienza gratis. Escala cuando crezcas.
+            <p className="mt-3 text-zinc-500">
+              14 días gratis en cualquier plan. Sin tarjeta. Cancela cuando quieras.
             </p>
           </div>
 
-          <div className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          <div className="mx-auto grid max-w-4xl gap-4 lg:grid-cols-3">
             {PLANS.map((plan) => (
               <div
                 key={plan.name}
                 className={`relative rounded-2xl border p-7 ${
                   plan.highlighted
-                    ? 'border-amber-500/40 bg-amber-500/5 shadow-lg shadow-amber-500/10'
-                    : 'border-white/5 bg-white/[0.02]'
+                    ? 'border-[#BEFF00]/30 bg-[#BEFF00]/[0.03]'
+                    : 'border-white/[0.04] bg-white/[0.01]'
                 }`}
               >
                 {plan.highlighted && (
-                  <div className="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-amber-500 px-3 py-1 text-xs font-bold text-black">
-                    Popular
+                  <div className="absolute -top-3 left-5 rounded-full bg-[#BEFF00] px-3 py-0.5 text-[11px] font-bold text-black">
+                    Recomendado
                   </div>
                 )}
 
-                <h3 className="text-xl font-black">{plan.name}</h3>
-                <p className="mt-1 text-sm text-zinc-400">{plan.desc}</p>
+                <h3 className="text-lg font-bold">{plan.name}</h3>
+                <p className="mt-1 text-xs text-zinc-500">{plan.desc}</p>
 
                 <div className="mt-5 flex items-baseline gap-1">
-                  <span className="text-3xl font-black">
-                    {plan.price.startsWith('C') ? '' : '$'}{plan.price}
-                  </span>
-                  <span className="text-sm text-zinc-500">{plan.period}</span>
+                  {plan.price !== 'A medida' ? (
+                    <>
+                      <span className="text-3xl font-black">${plan.price}</span>
+                      <span className="text-xs text-zinc-500">/mes</span>
+                    </>
+                  ) : (
+                    <span className="text-2xl font-black">{plan.price}</span>
+                  )}
                 </div>
 
-                <ul className="mt-6 space-y-3">
+                <ul className="mt-6 space-y-2.5">
                   {plan.features.map((f) => (
-                    <li key={f} className="flex items-center gap-2 text-sm text-zinc-300">
-                      <CheckCircle2 size={15} className="shrink-0 text-amber-500" />
+                    <li key={f} className="flex items-center gap-2 text-sm text-zinc-400">
+                      <CheckCircle2 size={14} className="shrink-0 text-[#BEFF00]" />
                       {f}
                     </li>
                   ))}
                 </ul>
 
                 <button
-                  className={`mt-8 w-full rounded-xl py-3 text-sm font-bold transition ${
+                  className={`mt-8 w-full rounded-lg py-2.5 text-sm font-bold transition ${
                     plan.highlighted
-                      ? 'bg-amber-500 text-black hover:bg-amber-400'
-                      : 'border border-white/10 text-zinc-300 hover:border-white/20 hover:text-white'
+                      ? 'bg-[#BEFF00] text-black hover:bg-[#d4ff4d]'
+                      : 'border border-white/[0.08] text-zinc-300 hover:border-white/20 hover:text-white'
                   }`}
                 >
-                  {plan.cta}
+                  Comenzar
                 </button>
               </div>
             ))}
@@ -310,36 +337,40 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* CTA */}
-      <section className="border-t border-white/5 py-20">
-        <div className="mx-auto max-w-3xl px-5 text-center">
+      {/* Final CTA */}
+      <section className="relative py-28">
+        <div className="absolute inset-0 border-t border-white/[0.04]" />
+        <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(190,255,0,0.03),transparent_50%)]" />
+
+        <div className="relative mx-auto max-w-2xl px-6 text-center">
           <h2 className="text-3xl font-black tracking-tight sm:text-4xl">
-            Empieza hoy, sin tarjeta de crédito
+            ¿Listo para simplificar
+            <br />tu operación?
           </h2>
-          <p className="mt-4 text-zinc-400">
-            14 días gratis con todas las funcionalidades. Sin compromisos.
+          <p className="mt-4 text-zinc-500">
+            En 5 minutos tienes todo configurado. Sin instalaciones, sin esperas.
           </p>
           <Link
             href="/login"
-            className="mt-8 inline-flex items-center gap-2 rounded-2xl bg-amber-500 px-8 py-4 text-base font-bold text-black shadow-lg shadow-amber-500/20 transition hover:scale-[1.02] hover:bg-amber-400"
+            className="group mt-8 inline-flex items-center gap-2 rounded-xl bg-[#BEFF00] px-8 py-4 text-sm font-bold text-black transition hover:bg-[#d4ff4d] hover:shadow-[0_0_60px_rgba(190,255,0,0.12)]"
           >
-            Crear mi cuenta
-            <Zap size={18} />
+            Crear mi cuenta gratis
+            <ChevronRight size={16} className="transition group-hover:translate-x-0.5" />
           </Link>
         </div>
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-white/5 py-10">
-        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 px-5 sm:flex-row">
+      <footer className="border-t border-white/[0.04] py-8">
+        <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-4 px-6 sm:flex-row">
           <div className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-lg bg-gradient-to-br from-amber-400 to-amber-600 text-xs font-black text-black">
-              VF
+            <div className="flex h-6 w-6 items-center justify-center rounded-md bg-[#BEFF00] text-[10px] font-black text-black">
+              V
             </div>
-            <span className="text-sm font-bold text-zinc-400">VentaFlow</span>
+            <span className="text-xs font-semibold text-zinc-500">ventaflow.cl</span>
           </div>
-          <p className="text-xs text-zinc-600">
-            © {new Date().getFullYear()} VentaFlow. Todos los derechos reservados.
+          <p className="text-[11px] text-zinc-700">
+            © {new Date().getFullYear()} VentaFlow. Santiago, Chile.
           </p>
         </div>
       </footer>

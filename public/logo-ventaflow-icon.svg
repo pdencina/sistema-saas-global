@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <!-- Background rounded square -->
+  <rect width="512" height="512" rx="112" fill="#0a0a0a"/>
+  
+  <!-- Inner rounded square with gradient -->
+  <rect x="48" y="48" width="416" height="416" rx="88" fill="url(#grad2)"/>
+  
+  <!-- Stylized V as a flow/arrow -->
+  <path d="M180 160 L256 360 L332 160" stroke="#000" stroke-width="52" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+  
+  <!-- Small flow dot -->
+  <circle cx="256" cy="380" r="20" fill="#000"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="grad2" x1="48" y1="48" x2="464" y2="464">
+      <stop offset="0%" stop-color="#FCD34D"/>
+      <stop offset="100%" stop-color="#D97706"/>
+    </linearGradient>
+  </defs>
+</svg>
