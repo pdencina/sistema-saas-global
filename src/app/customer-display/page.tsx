@@ -208,7 +208,7 @@ export default function CustomerDisplayPage() {
             </div>
             <h1 className="text-6xl font-black tracking-tight md:text-7xl">
               Bienvenido a
-              <span className="block text-[#8FA28A]">ARM Merch</span>
+              <span className="block text-[#8FA28A]">VentaFlow</span>
             </h1>
             <p className="mt-6 text-2xl text-[#6B6B6B]">
               Tu compra aparecerá aquí
@@ -252,8 +252,8 @@ function Header({ clock }: { clock: Date }) {
           <span className="text-xl font-black">A</span>
         </div>
         <div>
-          <p className="text-2xl font-black">ARM Merch</p>
-          <p className="text-sm text-[#6B6B6B]">Productos oficiales</p>
+          <p className="text-2xl font-black">VentaFlow</p>
+          <p className="text-sm text-[#6B6B6B]">Sistema de gestión</p>
         </div>
       </div>
 
@@ -362,7 +362,7 @@ function CartPanel({
                 <Heart className="h-7 w-7 text-[#7E9078]" />
                 <div>
                   <p className="text-lg font-black text-[#52604C]">Gracias por tu compra</p>
-                  <p className="text-sm text-[#6B6B6B]">ARM Merch</p>
+                  <p className="text-sm text-[#6B6B6B]">VentaFlow</p>
                 </div>
               </div>
             )}

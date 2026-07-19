@@ -44,7 +44,7 @@ export default function TrackPage() {
 
             <div>
               <h1 className="text-2xl font-black text-[#111111]">
-                ARM Merch
+                VentaFlow
               </h1>
               <p className="text-[#7E9078] text-sm">
                 Seguimiento de pedidos
@@ -80,7 +80,7 @@ export default function TrackPage() {
 
               <p className="text-[#5F5F5F] text-lg leading-relaxed max-w-2xl mx-auto">
                 Ingresa el código de seguimiento que recibiste por correo
-                para revisar el estado actual de tu pedido ARM Merch.
+                para revisar el estado actual de tu pedido.
               </p>
             </div>
 

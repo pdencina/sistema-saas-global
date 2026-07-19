@@ -94,10 +94,10 @@ export default function SaleSuccessModal({
     if (open) playSuccessSound()
   }, [open])
 
-  // WhatsApp QR: número de ARM Merch (env var en build time via NEXT_PUBLIC)
+  // WhatsApp QR: número de soporte (env var en build time via NEXT_PUBLIC)
   const whatsappNumber = process.env.NEXT_PUBLIC_WHATSAPP_NUMBER || ''
   const whatsappMessage = encodeURIComponent(
-    `Hola ARM Merch 👋 Acabo de comprar (Orden #${orderNumber}). Quiero recibir notificaciones por aquí.`
+    `Hola 👋 Acabo de comprar (Orden #${orderNumber}). Quiero recibir notificaciones por aquí.`
   )
   const whatsappLink = whatsappNumber
     ? `https://wa.me/${whatsappNumber.replace(/\D/g, '')}?text=${whatsappMessage}`
@@ -225,7 +225,7 @@ export default function SaleSuccessModal({
                   <div className="flex items-center gap-2 text-green-400">
                     <MessageCircle size={16} />
                     <p className="text-xs font-bold uppercase tracking-wider">
-                      WhatsApp ARM Merch
+                      WhatsApp Soporte
                     </p>
                   </div>
                   <p className="mt-1.5 text-xs text-zinc-400">
@@ -243,7 +243,7 @@ export default function SaleSuccessModal({
                     </div>
                   </div>
                   <p className="mt-2 text-center text-[10px] text-zinc-600">
-                    Se abrirá WhatsApp con un saludo a ARM Merch
+                    Se abrirá WhatsApp con un saludo al soporte
                   </p>
                 </div>
               )}

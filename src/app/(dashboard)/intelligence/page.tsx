@@ -19,7 +19,7 @@ export default function IntelligencePage() {
         </div>
         <h1 className="text-4xl font-black tracking-tight md:text-5xl">Intelligence Center</h1>
         <p className="mt-3 max-w-2xl text-sm leading-7 text-zinc-400">
-          Centro ejecutivo de ARM Merch para leer la operación, analizar indicadores y tomar decisiones estratégicas sin buscar links módulo por módulo.
+          Centro ejecutivo para leer la operación, analizar indicadores y tomar decisiones estratégicas.
         </p>
       </section>
 

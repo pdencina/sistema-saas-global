@@ -103,7 +103,7 @@ const STATUS_COPY: Record<
     subject: 'Tu pedido está en producción',
     title: 'Tu pedido está en producción',
     eyebrow: 'En producción',
-    message: 'El equipo ARM Merch ya está preparando tu producto.',
+    message: 'El equipo ya está preparando tu producto.',
     color: '#3b82f6',
   },
   ready_pickup: {
@@ -117,7 +117,7 @@ const STATUS_COPY: Record<
     subject: 'Pedido entregado',
     title: 'Tu pedido fue entregado',
     eyebrow: 'Entregado',
-    message: 'Tu pedido fue retirado exitosamente. ¡Gracias por comprar en ARM Merch!',
+    message: 'Tu pedido fue retirado exitosamente. ¡Gracias por tu compra!',
     color: '#22c55e',
   },
   cancelled: {
@@ -386,7 +386,7 @@ export async function sendTrackingEmail(input: TrackingEmailInput) {
         <table width="580" cellpadding="0" cellspacing="0" style="width:100%;max-width:580px;">
           <tr>
             <td style="padding:26px 28px;background:#18181b;border-radius:24px 24px 0 0;text-align:center;">
-              <p style="margin:0;color:#f59e0b;font-size:12px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;">ARM Merch</p>
+              <p style="margin:0;color:#f59e0b;font-size:12px;font-weight:800;letter-spacing:0.18em;text-transform:uppercase;">VentaFlow</p>
               <h1 style="margin:10px 0 0;color:#ffffff;font-size:28px;line-height:1.15;font-weight:900;">${esc(copy.title)}</h1>
             </td>
           </tr>
@@ -508,7 +508,7 @@ export async function sendTrackingEmail(input: TrackingEmailInput) {
 
           <tr>
             <td style="background:#18181b;border-radius:0 0 24px 24px;padding:22px;text-align:center;">
-              <p style="margin:0;color:#71717a;font-size:12px;">ARM Merch · ARM Global · armerch.com</p>
+              <p style="margin:0;color:#71717a;font-size:12px;">VentaFlow · ventaflow.cl</p>
             </td>
           </tr>
         </table>
@@ -521,7 +521,7 @@ export async function sendTrackingEmail(input: TrackingEmailInput) {
   try {
     const resend = new Resend(process.env.RESEND_API_KEY)
     const { error, data: resendData } = await resend.emails.send({
-      from: `ARM Merch <${fromEmail}>`,
+      from: `VentaFlow <${fromEmail}>`,
       to: data.to,
       subject: `${copy.subject} · Orden #${data.orderNumber}`,
       html,

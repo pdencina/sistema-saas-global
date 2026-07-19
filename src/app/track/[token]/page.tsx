@@ -102,7 +102,7 @@ const STATUS_CONFIG: Record<
   },
   in_production: {
     title: 'En producción',
-    subtitle: 'Tu producto está siendo preparado por el equipo ARM Merch.',
+    subtitle: 'Tu producto está siendo preparado por el equipo.',
     icon: Shirt,
     badge: 'bg-blue-500/15 text-blue-300 border-blue-500/30',
     percent: 60,
@@ -324,7 +324,7 @@ export default async function TrackingPage({ params }: PageProps) {
   const config = STATUS_CONFIG[currentStatus] ?? STATUS_CONFIG.pending_production
   const CurrentIcon = config.icon
   const currentIndex = getStatusIndex(currentStatus)
-  const customerName = contact?.client_name || 'Cliente ARM Merch'
+  const customerName = contact?.client_name || 'Cliente'
   const destinationCampus = pickupCampus || campus
   const progress = config.percent
 
@@ -342,7 +342,7 @@ export default async function TrackingPage({ params }: PageProps) {
             </div>
 
             <div>
-              <p className="text-2xl font-black text-[#111111]">ARM Merch</p>
+              <p className="text-2xl font-black text-[#111111]">VentaFlow</p>
               <p className="text-sm text-[#7E9078]">Seguimiento de pedidos</p>
             </div>
           </div>
@@ -645,7 +645,7 @@ export default async function TrackingPage({ params }: PageProps) {
         </div>
 
         <footer className="py-8 text-center text-xs text-[#9A9A9A]">
-          ARM Merch · Seguimiento generado automáticamente
+          VentaFlow · Seguimiento generado automáticamente
         </footer>
       </section>
     </main>

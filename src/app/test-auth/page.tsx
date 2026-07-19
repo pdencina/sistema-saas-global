@@ -39,7 +39,7 @@ export default function TestAuth() {
 
   return (
     <div style={{padding:32,fontFamily:'monospace',background:'#0a0a0a',color:'#e4e4e4',minHeight:'100vh'}}>
-      <h2 style={{color:'#f59e0b',marginBottom:16}}>ARM Merch — Auth Diagnostic</h2>
+      <h2 style={{color:'#f59e0b',marginBottom:16}}>VentaFlow — Auth Diagnostic</h2>
       <pre style={{background:'#111',padding:16,borderRadius:8,marginBottom:24,fontSize:13,color:'#4ade80'}}>
         {info ? JSON.stringify(info, null, 2) : 'Cargando...'}
       </pre>

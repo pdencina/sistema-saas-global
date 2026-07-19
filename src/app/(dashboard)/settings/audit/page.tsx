@@ -200,7 +200,7 @@ export default function AuditPage() {
             <h1 className="text-lg font-semibold text-white">Auditoría</h1>
           </div>
           <p className="mt-1 text-xs text-zinc-500">
-            Registro de acciones críticas del sistema ARM Merch.
+            Registro de acciones críticas del sistema.
           </p>
         </div>
 

@@ -152,7 +152,7 @@ function playPaymentSuccessSound() {
 function focusSkuSearchInput() {
   if (typeof window === "undefined") return;
 
-  window.dispatchEvent(new CustomEvent("arm-merch-focus-search"));
+  window.dispatchEvent(new CustomEvent("ventaflow-focus-search"));
 
   setTimeout(() => {
     const inputs = Array.from(
@@ -459,7 +459,7 @@ export default function Cart({ onClose }: { onClose?: () => void }) {
     emailSent?: boolean;
   } | null>(null);
   const [lastSale, setLastSale] = useState<LastSale | null>(null);
-  const [campusBrandName, setCampusBrandName] = useState("ARM Merch");
+  const [campusBrandName, setCampusBrandName] = useState("VentaFlow");
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [customerSuggestions, setCustomerSuggestions] = useState<CustomerSuggestion[]>([]);
   const [customerSearchLoading, setCustomerSearchLoading] = useState(false);
@@ -471,23 +471,23 @@ export default function Cart({ onClose }: { onClose?: () => void }) {
     setLastSale(sale);
 
     if (typeof window !== "undefined") {
-      window.localStorage.setItem("arm-merch-last-sale", JSON.stringify(sale));
+      window.localStorage.setItem("ventaflow-last-sale", JSON.stringify(sale));
     }
   };
 
   useEffect(() => {
     if (typeof window === "undefined") return;
 
-    const savedSale = window.localStorage.getItem("arm-merch-last-sale");
+    const savedSale = window.localStorage.getItem("ventaflow-last-sale");
     if (savedSale) {
       try {
         setLastSale(JSON.parse(savedSale));
       } catch {
-        window.localStorage.removeItem("arm-merch-last-sale");
+        window.localStorage.removeItem("ventaflow-last-sale");
       }
     }
 
-    const savedSound = window.localStorage.getItem("arm-merch-sound-enabled");
+    const savedSound = window.localStorage.getItem("ventaflow-sound-enabled");
     if (savedSound !== null) {
       setSoundEnabled(savedSound === "true");
     }
@@ -1742,8 +1742,8 @@ export default function Cart({ onClose }: { onClose?: () => void }) {
           body: JSON.stringify({
             amount: amountToCharge,
             currency: "CLP",
-            description: `Pedido ARM Merch - ${clientName.trim()}`,
-            order_id: `arm-${Date.now()}`,
+            description: `Pedido VentaFlow - ${clientName.trim()}`,
+            order_id: `vf-${Date.now()}`,
           }),
         });
 

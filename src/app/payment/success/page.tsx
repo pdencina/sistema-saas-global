@@ -23,7 +23,7 @@ export default function PaymentSuccessPage() {
   useEffect(() => {
     if (!checkoutReference) {
       setState('error')
-      setMessage('No encontramos la referencia del pago. Si el cobro fue realizado, avisa al equipo ARM Merch.')
+      setMessage('No encontramos la referencia del pago. Si el cobro fue realizado, avisa al equipo de soporte.')
       return
     }
 
@@ -67,7 +67,7 @@ export default function PaymentSuccessPage() {
 
         if (attempts >= maxAttempts) {
           setState('pending')
-          setMessage('Tu pago está siendo validado. Si el cobro aparece en tu billetera, el equipo ARM Merch podrá regularizarlo.')
+          setMessage('Tu pago está siendo validado. Si el cobro aparece en tu billetera, el equipo podrá regularizarlo.')
           return
         }
 
@@ -79,7 +79,7 @@ export default function PaymentSuccessPage() {
 
         if (attempts >= maxAttempts) {
           setState('error')
-          setMessage('No pudimos confirmar el pago automáticamente. Si el cobro fue realizado, avisa al equipo ARM Merch.')
+          setMessage('No pudimos confirmar el pago automáticamente. Si el cobro fue realizado, avisa al equipo de soporte.')
           return
         }
 
@@ -280,7 +280,7 @@ export default function PaymentSuccessPage() {
               color: 'rgba(255,255,255,0.6)',
               fontFamily: 'sans-serif',
               letterSpacing: '-0.3px',
-            }}>ARM Merch</span>
+            }}>VentaFlow</span>
           </div>
         </div>
 

@@ -42,7 +42,7 @@ function buildEmailHtml(d: VoucherPayload): string {
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Comprobante de compra ARM Merch #${d.orderNumber}</title>
+  <title>Comprobante de compra #${d.orderNumber}</title>
 </head>
 <body style="margin:0;padding:0;background:#f5f5f5;font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Helvetica,Arial,sans-serif;-webkit-font-smoothing:antialiased">
 
@@ -54,7 +54,7 @@ function buildEmailHtml(d: VoucherPayload): string {
     <!-- Header -->
     <tr><td style="background:#18181b;border-radius:16px 16px 0 0;padding:32px;text-align:center">
       <div style="margin-bottom:16px">
-        <span style="font-size:13px;font-weight:600;color:#a1a1aa;letter-spacing:0.05em;text-transform:uppercase">ARM GLOBAL</span>
+        <span style="font-size:13px;font-weight:600;color:#a1a1aa;letter-spacing:0.05em;text-transform:uppercase">VENTAFLOW</span>
       </div>
       <div style="font-size:28px;font-weight:700;color:#ffffff;letter-spacing:-0.5px;margin-bottom:4px">
         Comprobante de compra
@@ -140,9 +140,9 @@ function buildEmailHtml(d: VoucherPayload): string {
     <!-- Footer -->
     <tr><td style="background:#18181b;border-radius:0 0 16px 16px;padding:24px 32px;text-align:center">
       <div style="font-size:13px;color:#52525b;margin-bottom:6px">
-        Este comprobante fue generado automáticamente por <strong style="color:#a1a1aa">ARM Merch</strong>
+        Este comprobante fue generado automáticamente por <strong style="color:#a1a1aa">VentaFlow</strong>
       </div>
-      <div style="font-size:12px;color:#3f3f46">ARM Global · Sistema de Merchandising</div>
+      <div style="font-size:12px;color:#3f3f46">VentaFlow · Sistema de gestión comercial</div>
     </td></tr>
 
   </table>
@@ -169,9 +169,9 @@ export async function POST(req: NextRequest) {
 
     const resend = getResendClient()
     const { data, error } = await resend.emails.send({
-      from:    `ARM Merch <${fromEmail}>`,
+      from:    `VentaFlow <${fromEmail}>`,
       to:      [body.to],
-      subject: `Comprobante de compra ARM Merch — Orden #${body.orderNumber}`,
+      subject: `Comprobante de compra — Orden #${body.orderNumber}`,
       html:    buildEmailHtml(body),
     })
 

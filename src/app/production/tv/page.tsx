@@ -310,7 +310,7 @@ export default function ProductionTVPage() {
           <div>
             <div className="flex items-center gap-2">
               <Sparkles size={18} className="text-amber-400" />
-              <p className="text-xs font-black uppercase tracking-[0.35em] text-amber-400">ARM Merch</p>
+              <p className="text-xs font-black uppercase tracking-[0.35em] text-amber-400">VentaFlow</p>
             </div>
             <h1 className="mt-2 text-5xl font-black tracking-tight">Pantalla de Producción</h1>
           </div>

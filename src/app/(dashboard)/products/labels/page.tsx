@@ -250,7 +250,7 @@ export default function LabelsPage() {
   const [size, setSize] = useState<SizeKey>('large')
   const [showPrice, setShowPrice] = useState(true)
   const [showSku, setShowSku] = useState(true)
-  const [brandName, setBrandName] = useState('ARM Merch')
+  const [brandName, setBrandName] = useState('VentaFlow')
   const [cols, setCols] = useState(2)
 
   const printRef = useRef<HTMLDivElement>(null)
@@ -318,7 +318,7 @@ export default function LabelsPage() {
       <!DOCTYPE html>
       <html>
         <head>
-          <title>Etiquetas ARM Merch</title>
+          <title>Etiquetas VentaFlow</title>
           <style>
             * {
               margin: 0;

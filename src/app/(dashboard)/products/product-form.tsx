@@ -448,7 +448,7 @@ export default function ProductForm() {
             className={fieldClassName}
           />
           <p className="text-[11px] text-zinc-500">
-            Código interno de ARM Merch para ordenar productos y reportes.
+            Código interno para ordenar productos y reportes.
           </p>
         </div>
 

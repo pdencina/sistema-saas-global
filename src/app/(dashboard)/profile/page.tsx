@@ -187,7 +187,7 @@ export default function ProfilePage() {
           </div>
         </div>
         <div className="text-left sm:text-right">
-          <p className="text-sm text-zinc-500">Plataforma ARM Merch</p>
+          <p className="text-sm text-zinc-500">VentaFlow</p>
           <p className="font-semibold text-amber-400">Equipo autorizado</p>
         </div>
       </div>

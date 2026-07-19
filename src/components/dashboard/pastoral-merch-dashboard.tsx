@@ -169,7 +169,7 @@ export default function PastoralMerchDashboard() {
               </div>
 
               <h1 className="text-3xl font-black tracking-tight md:text-5xl">
-                ARM Merch Executive View
+                Executive View
               </h1>
 
               <p className="mt-3 max-w-3xl text-sm leading-relaxed text-zinc-300 md:text-base">

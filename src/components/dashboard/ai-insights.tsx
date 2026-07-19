@@ -142,7 +142,7 @@ export default function AiInsights() {
 
             <p className="mt-2 max-w-2xl text-sm leading-relaxed text-zinc-400">
               Análisis inteligente de ventas, stock, pedidos y oportunidades
-              operativas para ARM Merch.
+              operativas.
             </p>
           </div>
 

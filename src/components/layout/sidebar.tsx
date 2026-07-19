@@ -40,7 +40,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Reportes', href: '/reports', permKey: 'reports.view', icon: <BarChart3 size={16} />, roles: ['admin', 'adm_merch', 'super_admin'], section: 'Gestión' },
 
   { label: 'Executive Center', href: '/intelligence', permKey: 'executive.view', icon: <BrainCircuit size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Inteligencia' },
-  { label: 'Multi-Campus', href: '/intelligence/campus', permKey: 'executive.view', icon: <MapPin size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Inteligencia' },
+  { label: 'Multi-Sucursal', href: '/intelligence/campus', permKey: 'executive.view', icon: <MapPin size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Inteligencia' },
   { label: 'Analytics', href: '/intelligence/analytics', permKey: 'analytics.view', icon: <LineChart size={16} />, roles: ['adm_merch', 'admin', 'super_admin'], section: 'Inteligencia' },
   { label: 'IA Insights', href: '/intelligence/ai-insights', permKey: 'ai_insights.view', icon: <Sparkles size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Inteligencia' },
   { label: 'Forecast', href: '/intelligence/forecast', permKey: 'forecast.view', icon: <Telescope size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Inteligencia' },
@@ -49,7 +49,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Márgenes', href: '/pricing/margins', permKey: 'pricing.margins', icon: <TrendingUp size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Gestión' },
   // { label: 'Cierre de caja', href: '/close-day', permKey: 'close_day.view', icon: <Calculator size={16} />, roles: ['admin', 'adm_merch', 'super_admin'], section: 'Gestión' },
   { label: 'Usuarios', href: '/settings/users', icon: <Users size={16} />, roles: ['super_admin'], section: 'Configuración' },
-  { label: 'Campus', href: '/settings/campus', icon: <MapPin size={16} />, roles: ['super_admin'], section: 'Configuración' },
+  { label: 'Sucursales', href: '/settings/campus', icon: <MapPin size={16} />, roles: ['super_admin'], section: 'Configuración' },
   { label: 'Categorías', href: '/settings/categories', permKey: 'categories.view', icon: <Tags size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Configuración' },
   { label: 'Módulos', href: '/settings/modules', icon: <Layers size={16} />, roles: ['super_admin'], section: 'Configuración' },
   { label: 'Auditoría', href: '/settings/audit', icon: <ShieldCheck size={16} />, roles: ['super_admin'], section: 'Configuración' },

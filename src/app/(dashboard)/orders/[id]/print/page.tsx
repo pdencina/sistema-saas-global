@@ -264,7 +264,7 @@ export default function OrderPrintPage() {
     <div className="min-h-screen bg-white text-black print:bg-white">
       <div className="mx-auto max-w-[360px] p-6 print:p-2">
         <div className="text-center">
-          <h1 className="text-2xl font-bold">ARM MERCH</h1>
+          <h1 className="text-2xl font-bold">VENTAFLOW</h1>
           <p className="mt-1 text-xs">Comprobante de compra</p>
         </div>
 

@@ -108,10 +108,10 @@ export default function ProductGrid({ products, categories }: Props) {
       )
     }
 
-    window.addEventListener('arm-merch-stock-update', handler)
+    window.addEventListener('ventaflow-stock-update', handler)
 
     return () => {
-      window.removeEventListener('arm-merch-stock-update', handler)
+      window.removeEventListener('ventaflow-stock-update', handler)
     }
   }, [])
 
@@ -383,7 +383,7 @@ export default function ProductGrid({ products, categories }: Props) {
       }, 80)
     }
 
-    window.addEventListener('arm-merch-focus-search', focusHandler)
+    window.addEventListener('ventaflow-focus-search', focusHandler)
 
     return () => {
       window.removeEventListener('arm-merch-focus-search', focusHandler)
