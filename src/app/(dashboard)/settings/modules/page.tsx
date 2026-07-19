@@ -212,9 +212,9 @@ const PERMISSION_GROUPS = [
 ]
 
 const ROLES = [
-  { key: 'adm_merch',  label: 'ADM Merch',  color: 'text-indigo-400', bg: 'bg-indigo-500/10 border-indigo-500/20' },
-  { key: 'admin',      label: 'Admin',      color: 'text-blue-400',   bg: 'bg-blue-500/10 border-blue-500/20' },
-  { key: 'voluntario', label: 'Voluntario', color: 'text-green-400',  bg: 'bg-green-500/10 border-green-500/20' },
+  { key: 'adm_merch',  label: 'Gerente',      color: 'text-indigo-400', bg: 'bg-indigo-500/10 border-indigo-500/20' },
+  { key: 'admin',      label: 'Admin',        color: 'text-blue-400',   bg: 'bg-blue-500/10 border-blue-500/20' },
+  { key: 'voluntario', label: 'Colaborador',  color: 'text-green-400',  bg: 'bg-green-500/10 border-green-500/20' },
 ]
 
 const DEFAULTS = DEFAULT_ROLE_PERMISSION_MAP

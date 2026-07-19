@@ -8,6 +8,18 @@
 ALTER TABLE public.orders
   ADD COLUMN IF NOT EXISTS amount_paid numeric DEFAULT 0;
 
+-- ─── orders.balance_due ────────────────────────────────────────────────────────
+ALTER TABLE public.orders
+  ADD COLUMN IF NOT EXISTS balance_due numeric DEFAULT 0;
+
+-- ─── orders.payment_type ───────────────────────────────────────────────────────
+ALTER TABLE public.orders
+  ADD COLUMN IF NOT EXISTS payment_type text;
+
+-- ─── orders.payment_status ─────────────────────────────────────────────────────
+ALTER TABLE public.orders
+  ADD COLUMN IF NOT EXISTS payment_status text;
+
 -- ─── order_items.variant_type ──────────────────────────────────────────────────
 ALTER TABLE public.order_items
   ADD COLUMN IF NOT EXISTS variant_type text;

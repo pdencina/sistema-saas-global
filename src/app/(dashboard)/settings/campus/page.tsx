@@ -137,7 +137,7 @@ export default function CampusAdminPage() {
     })
     setSaving(false)
     if (error) { toast.error(error.message); return }
-    toast.success(`Campus "${newName.trim()}" creado`)
+    toast.success(`Sucursal "${newName.trim()}" creada`)
     setNewName(''); setNewCity(''); setNewCountry('Chile'); setShowNew(false)
     loadAll()
   }
@@ -145,7 +145,7 @@ export default function CampusAdminPage() {
   async function handleRename(id: string) {
     if (!editName.trim()) return
     await createClient().from('campus').update({ name: editName.trim() }).eq('id', id)
-    toast.success('Campus renombrado')
+    toast.success('Sucursal renombrada')
     setEditId(null); setEditName('')
     loadAll()
   }
@@ -153,7 +153,7 @@ export default function CampusAdminPage() {
   async function toggleActive(id: string, active: boolean, name?: string) {
     if (!active) {
       const ok = window.confirm(
-        `¿Desactivar ${name ?? 'este campus'}?\n\nNo se eliminarán órdenes, inventario ni historial. Solo quedará oculto para la operación.`
+        `¿Desactivar ${name ?? 'esta sucursal'}?\n\nNo se eliminarán órdenes, inventario ni historial. Solo quedará oculta para la operación.`
       )
 
       if (!ok) return
@@ -173,7 +173,7 @@ export default function CampusAdminPage() {
       return
     }
 
-    toast.success(active ? 'Campus reactivado' : 'Campus desactivado')
+    toast.success(active ? 'Sucursal reactivada' : 'Sucursal desactivada')
     loadAll()
   }
 
@@ -212,8 +212,8 @@ export default function CampusAdminPage() {
       {/* Header */}
       <div className="flex items-center justify-between flex-wrap gap-3">
         <div>
-          <h1 className="text-lg font-semibold text-white">Administración de campus</h1>
-          <p className="text-xs text-zinc-500 mt-0.5">{campus.filter(c => c.is_active ?? c.active ?? true).length} campus activos · Total mes: {fmt(totalSales)}</p>
+          <h1 className="text-lg font-semibold text-white">Administración de sucursales</h1>
+          <p className="text-xs text-zinc-500 mt-0.5">{campus.filter(c => c.is_active ?? c.active ?? true).length} sucursales activas · Total mes: {fmt(totalSales)}</p>
         </div>
         <div className="flex items-center gap-2">
           <button onClick={() => setShowInactive(v => !v)}
@@ -224,7 +224,7 @@ export default function CampusAdminPage() {
 
           <button onClick={() => setShowNew(!showNew)}
             className="flex items-center gap-2 bg-amber-500 hover:bg-amber-400 text-zinc-950 font-bold rounded-xl px-4 py-2.5 text-sm transition active:scale-[0.98]">
-            <Plus size={15} />Nuevo campus
+            <Plus size={15} />Nueva sucursal
           </button>
         </div>
       </div>
@@ -261,14 +261,14 @@ export default function CampusAdminPage() {
         </div>
       )}
 
-      {/* Form nuevo campus */}
+      {/* Form nueva sucursal */}
       {showNew && (
         <form onSubmit={handleCreate} className="bg-zinc-800/30 border border-amber-500/20 rounded-xl p-4 flex flex-col gap-3">
-          <p className="text-sm font-medium text-white">Agregar nuevo campus</p>
+          <p className="text-sm font-medium text-white">Agregar nueva sucursal</p>
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
             <div>
               <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Nombre *</label>
-              <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="ARM Ciudad"
+              <input type="text" value={newName} onChange={e => setNewName(e.target.value)} placeholder="Sucursal Centro"
                 className="w-full bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-600 rounded-xl px-3 py-2 text-sm focus:outline-none focus:border-amber-500 transition" />
             </div>
             <div>
@@ -287,7 +287,7 @@ export default function CampusAdminPage() {
               className="px-4 py-2 bg-zinc-700 hover:bg-zinc-600 text-zinc-300 rounded-xl text-sm transition">Cancelar</button>
             <button type="submit" disabled={saving}
               className="px-4 py-2 bg-amber-500 hover:bg-amber-400 disabled:opacity-40 text-zinc-950 font-bold rounded-xl text-sm transition flex items-center gap-2">
-              {saving && <Loader2 size={13} className="animate-spin" />}Crear campus
+              {saving && <Loader2 size={13} className="animate-spin" />}Crear sucursal
             </button>
           </div>
         </form>
