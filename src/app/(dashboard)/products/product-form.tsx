@@ -311,7 +311,7 @@ export default function ProductForm() {
       }))
 
     if (selectedCampuses.length === 0) {
-      notifyError('Campus requerido', 'Debes seleccionar al menos un campus')
+      notifyError('Sucursal requerida', 'Debes seleccionar al menos una sucursal')
       return
     }
 
@@ -404,11 +404,11 @@ export default function ProductForm() {
           <Barcode className="mt-0.5 text-amber-400" size={18} />
           <div>
             <p className="text-sm font-semibold text-amber-300">
-              Productos comerciales y productos ARM
+              Productos comerciales
             </p>
             <p className="mt-1 text-xs leading-5 text-amber-100/80">
               Para productos comerciales como aguas, bebidas, jugos o snacks, escanea el código real del envase.
-              Para productos ARM sin código propio, puedes dejar el barcode vacío y generar etiquetas internas después.
+              Para productos sin código propio, puedes dejar el barcode vacío y generar etiquetas internas después.
             </p>
           </div>
         </div>
@@ -594,11 +594,11 @@ export default function ProductForm() {
 
       <div className="space-y-4">
         <div>
-          <h3 className="text-lg font-semibold text-white">Stock por campus</h3>
+          <h3 className="text-lg font-semibold text-white">Stock por sucursal</h3>
           <p className="mt-1 text-sm text-zinc-500">
             {isSuperAdmin
-              ? 'Activa solo los campus donde este producto estará disponible.'
-              : 'Como admin, este producto se creará solo para tu campus.'}
+              ? 'Activa solo las sucursales donde este producto estará disponible.'
+              : 'Como admin, este producto se creará solo para tu sucursal.'}
           </p>
         </div>
 

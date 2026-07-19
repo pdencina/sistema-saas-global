@@ -158,7 +158,7 @@ export default function ProductForm({ categories, product }: Props) {
         <div>
           <label className="block text-xs text-zinc-500 mb-1.5">SKU</label>
           <input type="text" value={sku} onChange={e => setSku(e.target.value)}
-            placeholder="ARM-001"
+            placeholder="PROD-001"
             className="w-full bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-600 rounded-xl px-4 py-2.5 text-sm focus:outline-none focus:border-amber-500 transition" />
         </div>
       </div>
