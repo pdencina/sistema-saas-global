@@ -120,7 +120,7 @@ export default function UsersClient({ initialUsers, initialCampus }: Props) {
           { label:'Total usuarios', value:stats.total },
           { label:'Activos',        value:stats.activos },
           { label:'Admins',         value:stats.admins },
-          { label:'Voluntarios',    value:stats.voluntarios },
+          { label:'Colaboradores',    value:stats.voluntarios },
         ].map(s => (
           <div key={s.label} className="bg-zinc-800/50 border border-zinc-700/40 rounded-xl p-4">
             <p className="text-xs text-zinc-500">{s.label}</p>
@@ -147,7 +147,7 @@ export default function UsersClient({ initialUsers, initialCampus }: Props) {
                 <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Usuario</th>
                 <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500 hidden sm:table-cell">Email</th>
                 <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Rol</th>
-                <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Campus</th>
+                <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Sucursal</th>
                 <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500 hidden lg:table-cell">Registro</th>
                 <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Estado</th>
               </tr>
@@ -179,7 +179,7 @@ export default function UsersClient({ initialUsers, initialCampus }: Props) {
                     <select value={user.role ?? 'voluntario'} onChange={e => updateRole(user.id, e.target.value as Role)}
                       className={`text-xs font-semibold px-2 py-1 rounded-lg border cursor-pointer bg-transparent
                         focus:outline-none transition ${ROLE_STYLES[(user.role as Role) ?? 'voluntario']}`}>
-                      <option value="voluntario">Voluntario</option>
+                      <option value="voluntario">Colaborador</option>
                       <option value="admin">Admin</option>
                       <option value="super_admin">Super Admin</option>
                     </select>
@@ -187,7 +187,7 @@ export default function UsersClient({ initialUsers, initialCampus }: Props) {
                   <td className="px-4 py-3">
                     <select value={user.campus_id ?? ''} onChange={e => updateCampus(user.id, e.target.value)}
                       className="text-xs bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-lg px-2 py-1 focus:outline-none focus:border-amber-500 transition max-w-[140px]">
-                      <option value="">Sin campus</option>
+                      <option value="">Sin sucursal</option>
                       {campus.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
                     {user.campus?.name && (
@@ -240,7 +240,7 @@ export default function UsersClient({ initialUsers, initialCampus }: Props) {
                 <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Email *</label>
                 <div className="relative">
                   <Mail size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
-                  <input type="email" value={newEmail} onChange={e => setNewEmail(e.target.value)} placeholder="juan@armglobal.cl"
+                  <input type="email" value={newEmail} onChange={e => setNewEmail(e.target.value)} placeholder="juan@empresa.cl"
                     className="w-full bg-zinc-800 border border-zinc-700 text-white placeholder-zinc-600 rounded-xl pl-9 pr-4 py-2.5 text-sm focus:outline-none focus:border-amber-500 transition" />
                 </div>
               </div>
@@ -256,19 +256,19 @@ export default function UsersClient({ initialUsers, initialCampus }: Props) {
                     <Shield size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
                     <select value={newRole} onChange={e => setNewRole(e.target.value as Role)}
                       className="w-full bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-xl pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:border-amber-500 transition">
-                      <option value="voluntario">Voluntario</option>
+                      <option value="voluntario">Colaborador</option>
                       <option value="admin">Admin</option>
                       <option value="super_admin">Super Admin</option>
                     </select>
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Campus</label>
+                  <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Sucursal</label>
                   <div className="relative">
                     <MapPin size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
                     <select value={newCampus} onChange={e => setNewCampus(e.target.value)}
                       className="w-full bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-xl pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:border-amber-500 transition">
-                      <option value="">Sin campus</option>
+                      <option value="">Sin sucursal</option>
                       {campus.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
                   </div>
