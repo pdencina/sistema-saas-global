@@ -65,53 +65,52 @@ export default function LoginPage() {
   }
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#fafafa] px-4">
+    <main className="flex min-h-screen items-center justify-center bg-[#f8fafc] px-4">
       <div className="w-full max-w-[380px]">
         {/* Back */}
         <Link
           href="/"
-          className="mb-6 inline-flex items-center gap-1.5 text-xs font-medium text-[#999] transition hover:text-[#111]"
+          className="mb-6 inline-flex items-center gap-1.5 text-xs font-medium text-[#6b7c99] transition hover:text-[#1a2b4a]"
         >
           <ArrowLeft size={12} />
           ventaflow.cl
         </Link>
 
         {/* Card */}
-        <div className="rounded-2xl border border-black/[0.06] bg-white p-8 shadow-sm">
+        <div className="rounded-2xl border border-[#e8edf3] bg-white p-8 shadow-sm">
           {/* Logo */}
           <div className="mb-8">
-            <div className="mb-4 flex h-11 w-11 items-center justify-center rounded-xl bg-[#111]">
-              <span className="text-lg font-black text-white">V</span>
-            </div>
-            <h1 className="text-xl font-bold tracking-tight text-[#111]">Bienvenido de vuelta</h1>
-            <p className="mt-1 text-sm text-[#888]">Ingresa a tu cuenta de VentaFlow</p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="VentaFlow" className="mb-4 h-10 w-auto" />
+            <h1 className="text-xl font-bold tracking-tight text-[#1a2b4a]">Bienvenido de vuelta</h1>
+            <p className="mt-1 text-sm text-[#6b7c99]">Ingresa a tu cuenta de VentaFlow</p>
           </div>
 
           {/* Form */}
           <div className="space-y-4">
             <div>
-              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-[#999]">
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-[#6b7c99]">
                 Email
               </label>
-              <div className="flex items-center gap-2.5 rounded-lg border border-black/[0.08] bg-[#fafafa] px-3.5 py-2.5 transition focus-within:border-[#111] focus-within:ring-1 focus-within:ring-[#111]/5">
-                <Mail size={15} className="text-[#bbb]" />
+              <div className="flex items-center gap-2.5 rounded-lg border border-[#e8edf3] bg-[#f8fafc] px-3.5 py-2.5 transition focus-within:border-[#2563EB] focus-within:ring-1 focus-within:ring-[#2563EB]/10">
+                <Mail size={15} className="text-[#a3b1c6]" />
                 <input
                   type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="tu@negocio.cl"
                   autoComplete="email"
-                  className="flex-1 bg-transparent text-sm text-[#111] placeholder-[#ccc] outline-none"
+                  className="flex-1 bg-transparent text-sm text-[#1a2b4a] placeholder-[#a3b1c6] outline-none"
                 />
               </div>
             </div>
 
             <div>
-              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-[#999]">
+              <label className="mb-1.5 block text-[11px] font-semibold uppercase tracking-wider text-[#6b7c99]">
                 Contraseña
               </label>
-              <div className="flex items-center gap-2.5 rounded-lg border border-black/[0.08] bg-[#fafafa] px-3.5 py-2.5 transition focus-within:border-[#111] focus-within:ring-1 focus-within:ring-[#111]/5">
-                <LockKeyhole size={15} className="text-[#bbb]" />
+              <div className="flex items-center gap-2.5 rounded-lg border border-[#e8edf3] bg-[#f8fafc] px-3.5 py-2.5 transition focus-within:border-[#2563EB] focus-within:ring-1 focus-within:ring-[#2563EB]/10">
+                <LockKeyhole size={15} className="text-[#a3b1c6]" />
                 <input
                   type="password"
                   value={password}
@@ -124,7 +123,7 @@ export default function LoginPage() {
                       handleLogin()
                     }
                   }}
-                  className="flex-1 bg-transparent text-sm text-[#111] placeholder-[#ccc] outline-none"
+                  className="flex-1 bg-transparent text-sm text-[#1a2b4a] placeholder-[#a3b1c6] outline-none"
                 />
               </div>
             </div>
@@ -139,7 +138,7 @@ export default function LoginPage() {
               type="button"
               onClick={handleLogin}
               disabled={loading}
-              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-[#111] py-3 text-sm font-semibold text-white transition hover:bg-[#333] disabled:opacity-50"
+              className="mt-2 flex w-full items-center justify-center gap-2 rounded-lg bg-gradient-to-r from-[#2563EB] to-[#14B8A6] py-3 text-sm font-semibold text-white shadow-md shadow-[#2563EB]/15 transition hover:opacity-90 disabled:opacity-50"
             >
               {loading ? (
                 <>
@@ -156,7 +155,7 @@ export default function LoginPage() {
           <div className="mt-5">
             <Link
               href="/forgot-password"
-              className="text-[11px] text-[#999] transition hover:text-[#111]"
+              className="text-[11px] text-[#6b7c99] transition hover:text-[#2563EB]"
             >
               ¿Olvidaste tu contraseña?
             </Link>
@@ -164,8 +163,8 @@ export default function LoginPage() {
         </div>
 
         {/* Footer */}
-        <p className="mt-8 text-center text-[11px] text-[#ccc]">
-          © {new Date().getFullYear()} VentaFlow
+        <p className="mt-8 text-center text-[11px] text-[#a3b1c6]">
+          © {new Date().getFullYear()} VentaFlow · Gestiona. Vende. Crece.
         </p>
       </div>
     </main>

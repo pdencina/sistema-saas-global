@@ -13,7 +13,6 @@ import {
   ShoppingCart,
   Smartphone,
   Users,
-  Zap,
   ChevronRight,
   ArrowUpRight,
 } from 'lucide-react'
@@ -97,30 +96,29 @@ const PLANS = [
 
 export default function HomePage() {
   return (
-    <main className="min-h-screen bg-[#fafafa] text-[#111]">
+    <main className="min-h-screen bg-white text-[#1a2b4a]">
       {/* Nav */}
-      <header className="fixed top-0 z-50 w-full border-b border-black/[0.04] bg-[#fafafa]/80 backdrop-blur-xl">
+      <header className="fixed top-0 z-50 w-full border-b border-[#e8edf3] bg-white/80 backdrop-blur-xl">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="flex items-center gap-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-md bg-[#111]">
-              <span className="text-xs font-black text-white">V</span>
-            </div>
-            <span className="text-sm font-bold tracking-tight">ventaflow</span>
+          <Link href="/" className="flex items-center gap-2.5">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="VentaFlow" className="h-8 w-auto" />
+            <span className="text-sm font-bold tracking-tight text-[#1a2b4a]">VentaFlow</span>
           </Link>
 
-          <nav className="hidden items-center gap-7 text-[13px] text-[#666] md:flex">
-            <a href="#producto" className="transition hover:text-[#111]">Producto</a>
-            <a href="#rubros" className="transition hover:text-[#111]">Rubros</a>
-            <a href="#planes" className="transition hover:text-[#111]">Planes</a>
+          <nav className="hidden items-center gap-7 text-[13px] font-medium text-[#6b7c99] md:flex">
+            <a href="#producto" className="transition hover:text-[#1a2b4a]">Producto</a>
+            <a href="#rubros" className="transition hover:text-[#1a2b4a]">Rubros</a>
+            <a href="#planes" className="transition hover:text-[#1a2b4a]">Planes</a>
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/login" className="text-xs text-[#666] transition hover:text-[#111]">
+            <Link href="/login" className="text-xs font-medium text-[#6b7c99] transition hover:text-[#1a2b4a]">
               Ingresar
             </Link>
             <Link
               href="#contacto"
-              className="rounded-lg bg-[#111] px-4 py-2 text-xs font-semibold text-white transition hover:bg-[#333]"
+              className="rounded-lg bg-gradient-to-r from-[#2563EB] to-[#14B8A6] px-4 py-2 text-xs font-semibold text-white transition hover:opacity-90"
             >
               Hablemos
             </Link>
@@ -135,18 +133,29 @@ export default function HomePage() {
           animate="visible"
           className="mx-auto max-w-3xl text-center"
         >
-          <motion.h1
+          <motion.p
             variants={fadeUp}
             custom={0}
-            className="text-[clamp(2.2rem,5.5vw,3.8rem)] font-bold leading-[1.08] tracking-tight text-[#111]"
+            className="mb-4 text-sm font-semibold tracking-wide text-[#14B8A6]"
           >
-            El sistema de gestión que tu negocio necesita.
+            Gestiona. Vende. Crece.
+          </motion.p>
+
+          <motion.h1
+            variants={fadeUp}
+            custom={1}
+            className="text-[clamp(2.2rem,5.5vw,3.8rem)] font-bold leading-[1.08] tracking-tight text-[#1a2b4a]"
+          >
+            Sistema de gestión comercial para{' '}
+            <span className="bg-gradient-to-r from-[#2563EB] to-[#14B8A6] bg-clip-text text-transparent">
+              PYMES
+            </span>
           </motion.h1>
 
           <motion.p
             variants={fadeUp}
-            custom={1}
-            className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-[#666]"
+            custom={2}
+            className="mx-auto mt-6 max-w-lg text-base leading-relaxed text-[#6b7c99]"
           >
             Punto de venta, inventario y operación multi-local en una sola plataforma.
             Sin curva de aprendizaje. Sin contratos. Implementación en minutos.
@@ -154,19 +163,19 @@ export default function HomePage() {
 
           <motion.div
             variants={fadeUp}
-            custom={2}
+            custom={3}
             className="mt-10 flex flex-col items-center gap-3 sm:flex-row sm:justify-center"
           >
             <Link
               href="#contacto"
-              className="group flex items-center gap-2 rounded-xl bg-[#111] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#333]"
+              className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#14B8A6] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#2563EB]/20 transition hover:opacity-90"
             >
               Hablemos
               <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
             </Link>
             <Link
               href="/login"
-              className="flex items-center gap-1.5 text-sm font-medium text-[#666] transition hover:text-[#111]"
+              className="flex items-center gap-1.5 text-sm font-medium text-[#6b7c99] transition hover:text-[#1a2b4a]"
             >
               Ya tengo cuenta
               <ArrowUpRight size={13} />
@@ -181,25 +190,25 @@ export default function HomePage() {
           transition={{ delay: 1.5, duration: 1 }}
           className="absolute bottom-12"
         >
-          <div className="h-10 w-[1px] bg-gradient-to-b from-transparent to-[#ddd]" />
+          <div className="h-10 w-[1px] bg-gradient-to-b from-transparent to-[#d1dbe8]" />
         </motion.div>
       </section>
 
       {/* Features */}
-      <section id="producto" className="border-t border-black/[0.04] py-28">
+      <section id="producto" className="border-t border-[#e8edf3] bg-[#f8fafc] py-28">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
           >
-            <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#999]">
+            <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">
               Producto
             </motion.p>
-            <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+            <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight text-[#1a2b4a] sm:text-3xl">
               Todo lo que necesitas, nada que sobre.
             </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="mt-3 max-w-lg text-sm leading-relaxed text-[#666]">
+            <motion.p variants={fadeUp} custom={2} className="mt-3 max-w-lg text-sm leading-relaxed text-[#6b7c99]">
               Herramientas profesionales diseñadas para negocios reales en Latinoamérica.
             </motion.p>
           </motion.div>
@@ -215,13 +224,13 @@ export default function HomePage() {
                 key={f.title}
                 variants={fadeUp}
                 custom={i}
-                className="rounded-2xl border border-black/[0.04] bg-white p-6 transition hover:shadow-lg hover:shadow-black/[0.03]"
+                className="rounded-2xl border border-[#e8edf3] bg-white p-6 transition hover:border-[#2563EB]/20 hover:shadow-lg hover:shadow-[#2563EB]/5"
               >
-                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-[#f5f5f5] text-[#444]">
+                <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-[#2563EB]/10 to-[#14B8A6]/10 text-[#2563EB]">
                   {f.icon}
                 </div>
-                <h3 className="font-semibold">{f.title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-[#666]">{f.desc}</p>
+                <h3 className="font-semibold text-[#1a2b4a]">{f.title}</h3>
+                <p className="mt-2 text-sm leading-relaxed text-[#6b7c99]">{f.desc}</p>
               </motion.div>
             ))}
           </motion.div>
@@ -229,7 +238,7 @@ export default function HomePage() {
       </section>
 
       {/* Verticals */}
-      <section id="rubros" className="border-t border-black/[0.04] py-28">
+      <section id="rubros" className="border-t border-[#e8edf3] py-28">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial="hidden"
@@ -238,31 +247,31 @@ export default function HomePage() {
             className="grid items-center gap-16 lg:grid-cols-2"
           >
             <div>
-              <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#999]">
+              <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">
                 Rubros
               </motion.p>
-              <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+              <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight text-[#1a2b4a] sm:text-3xl">
                 Un sistema, cualquier negocio.
               </motion.h2>
-              <motion.p variants={fadeUp} custom={2} className="mt-4 max-w-md text-sm leading-relaxed text-[#666]">
+              <motion.p variants={fadeUp} custom={2} className="mt-4 max-w-md text-sm leading-relaxed text-[#6b7c99]">
                 La terminología, categorías y flujos se adaptan automáticamente a tu rubro.
                 No es un sistema genérico — se siente hecho para ti.
               </motion.p>
 
-              <motion.div variants={fadeUp} custom={3} className="mt-8 rounded-xl border border-black/[0.04] bg-white p-5">
-                <p className="mb-3 text-xs font-semibold text-[#999]">Ejemplo de adaptación:</p>
+              <motion.div variants={fadeUp} custom={3} className="mt-8 rounded-xl border border-[#e8edf3] bg-[#f8fafc] p-5">
+                <p className="mb-3 text-xs font-semibold text-[#6b7c99]">Ejemplo de adaptación:</p>
                 <div className="space-y-2.5 text-sm">
                   <div className="flex items-center justify-between">
-                    <span className="text-[#999]">Ferretería</span>
-                    <span className="font-medium text-[#111]">"Sucursales" · "Vendedores"</span>
+                    <span className="text-[#6b7c99]">Ferretería</span>
+                    <span className="font-medium text-[#1a2b4a]">"Sucursales" · "Vendedores"</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[#999]">Cafetería</span>
-                    <span className="font-medium text-[#111]">"Locales" · "Cajeros"</span>
+                    <span className="text-[#6b7c99]">Cafetería</span>
+                    <span className="font-medium text-[#1a2b4a]">"Locales" · "Cajeros"</span>
                   </div>
                   <div className="flex items-center justify-between">
-                    <span className="text-[#999]">Tienda de ropa</span>
-                    <span className="font-medium text-[#111]">"Tiendas" · "Asesores"</span>
+                    <span className="text-[#6b7c99]">Tienda de ropa</span>
+                    <span className="font-medium text-[#1a2b4a]">"Tiendas" · "Asesores"</span>
                   </div>
                 </div>
               </motion.div>
@@ -279,7 +288,7 @@ export default function HomePage() {
                   key={v}
                   variants={fadeUp}
                   custom={i * 0.5}
-                  className="rounded-xl border border-black/[0.04] bg-white px-5 py-4 text-sm font-medium text-[#333] transition hover:border-[#111]/10 hover:shadow-sm"
+                  className="rounded-xl border border-[#e8edf3] bg-white px-5 py-4 text-sm font-medium text-[#1a2b4a] transition hover:border-[#14B8A6]/30 hover:shadow-sm"
                 >
                   {v}
                 </motion.div>
@@ -290,7 +299,7 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section id="planes" className="border-t border-black/[0.04] py-28">
+      <section id="planes" className="border-t border-[#e8edf3] bg-[#f8fafc] py-28">
         <div className="mx-auto max-w-6xl px-6">
           <motion.div
             initial="hidden"
@@ -298,13 +307,13 @@ export default function HomePage() {
             viewport={{ once: true, margin: '-100px' }}
             className="text-center"
           >
-            <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#999]">
+            <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">
               Planes
             </motion.p>
-            <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight sm:text-3xl">
+            <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight text-[#1a2b4a] sm:text-3xl">
               Precio justo, sin letra chica.
             </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="mt-3 text-sm text-[#666]">
+            <motion.p variants={fadeUp} custom={2} className="mt-3 text-sm text-[#6b7c99]">
               14 días gratis en cualquier plan. Sin tarjeta. Cancela cuando quieras.
             </motion.p>
           </motion.div>
@@ -322,18 +331,18 @@ export default function HomePage() {
                 custom={i}
                 className={`relative rounded-2xl border p-7 ${
                   plan.highlighted
-                    ? 'border-[#111] bg-[#111] text-white'
-                    : 'border-black/[0.04] bg-white'
+                    ? 'border-[#2563EB]/30 bg-gradient-to-b from-[#1a2b4a] to-[#0f1a2e] text-white shadow-xl shadow-[#2563EB]/10'
+                    : 'border-[#e8edf3] bg-white'
                 }`}
               >
                 {plan.highlighted && (
-                  <div className="absolute -top-3 left-5 rounded-full bg-[#BEFF00] px-3 py-0.5 text-[11px] font-bold text-black">
+                  <div className="absolute -top-3 left-5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#14B8A6] px-3 py-0.5 text-[11px] font-bold text-white">
                     Popular
                   </div>
                 )}
 
                 <h3 className="text-lg font-bold">{plan.name}</h3>
-                <p className={`mt-1 text-xs ${plan.highlighted ? 'text-zinc-400' : 'text-[#999]'}`}>
+                <p className={`mt-1 text-xs ${plan.highlighted ? 'text-blue-200' : 'text-[#6b7c99]'}`}>
                   {plan.desc}
                 </p>
 
@@ -341,7 +350,7 @@ export default function HomePage() {
                   {plan.price !== 'A medida' ? (
                     <>
                       <span className="text-2xl font-bold">${plan.price}</span>
-                      <span className={`text-xs ${plan.highlighted ? 'text-zinc-400' : 'text-[#999]'}`}>/mes</span>
+                      <span className={`text-xs ${plan.highlighted ? 'text-blue-200' : 'text-[#6b7c99]'}`}>/mes</span>
                     </>
                   ) : (
                     <span className="text-2xl font-bold">{plan.price}</span>
@@ -350,8 +359,8 @@ export default function HomePage() {
 
                 <ul className="mt-6 space-y-2.5">
                   {plan.features.map((f) => (
-                    <li key={f} className={`flex items-center gap-2 text-sm ${plan.highlighted ? 'text-zinc-300' : 'text-[#666]'}`}>
-                      <CheckCircle2 size={14} className={`shrink-0 ${plan.highlighted ? 'text-[#BEFF00]' : 'text-[#111]'}`} />
+                    <li key={f} className={`flex items-center gap-2 text-sm ${plan.highlighted ? 'text-blue-100' : 'text-[#6b7c99]'}`}>
+                      <CheckCircle2 size={14} className={`shrink-0 ${plan.highlighted ? 'text-[#14B8A6]' : 'text-[#2563EB]'}`} />
                       {f}
                     </li>
                   ))}
@@ -361,8 +370,8 @@ export default function HomePage() {
                   href="#contacto"
                   className={`mt-8 block w-full rounded-lg py-2.5 text-center text-sm font-semibold transition ${
                     plan.highlighted
-                      ? 'bg-[#BEFF00] text-black hover:bg-[#d4ff4d]'
-                      : 'bg-[#f5f5f5] text-[#111] hover:bg-[#eee]'
+                      ? 'bg-gradient-to-r from-[#2563EB] to-[#14B8A6] text-white hover:opacity-90'
+                      : 'bg-[#f0f4f8] text-[#1a2b4a] hover:bg-[#e4eaf1]'
                   }`}
                 >
                   Contáctanos
@@ -374,21 +383,21 @@ export default function HomePage() {
       </section>
 
       {/* Contact CTA */}
-      <section id="contacto" className="border-t border-black/[0.04] py-28">
+      <section id="contacto" className="border-t border-[#e8edf3] py-28">
         <motion.div
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, margin: '-100px' }}
           className="mx-auto max-w-2xl px-6 text-center"
         >
-          <motion.div variants={fadeUp} custom={0} className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-[#111]">
-            <MessageCircle size={24} className="text-[#BEFF00]" />
+          <motion.div variants={fadeUp} custom={0} className="mx-auto mb-6 flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-[#2563EB] to-[#14B8A6]">
+            <MessageCircle size={24} className="text-white" />
           </motion.div>
 
-          <motion.h2 variants={fadeUp} custom={1} className="text-2xl font-bold tracking-tight sm:text-3xl">
+          <motion.h2 variants={fadeUp} custom={1} className="text-2xl font-bold tracking-tight text-[#1a2b4a] sm:text-3xl">
             ¿Hablemos?
           </motion.h2>
-          <motion.p variants={fadeUp} custom={2} className="mt-4 text-sm leading-relaxed text-[#666]">
+          <motion.p variants={fadeUp} custom={2} className="mt-4 text-sm leading-relaxed text-[#6b7c99]">
             Agenda una demo personalizada de 15 minutos. Te mostramos cómo VentaFlow
             se adapta a tu negocio específico.
           </motion.p>
@@ -398,14 +407,14 @@ export default function HomePage() {
               href="https://wa.me/56949616038?text=Hola%2C%20me%20interesa%20VentaFlow"
               target="_blank"
               rel="noopener noreferrer"
-              className="group flex items-center gap-2 rounded-xl bg-[#111] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[#333]"
+              className="group flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#14B8A6] px-6 py-3 text-sm font-semibold text-white shadow-lg shadow-[#2563EB]/20 transition hover:opacity-90"
             >
               Escribir por WhatsApp
               <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
               href="mailto:hola@ventaflow.cl"
-              className="text-sm font-medium text-[#666] transition hover:text-[#111]"
+              className="text-sm font-medium text-[#6b7c99] transition hover:text-[#1a2b4a]"
             >
               hola@ventaflow.cl
             </a>
@@ -414,13 +423,16 @@ export default function HomePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-black/[0.04] py-8">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6">
+      <footer className="border-t border-[#e8edf3] py-8">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-6 sm:flex-row">
           <div className="flex items-center gap-2">
-            <div className="flex h-5 w-5 items-center justify-center rounded bg-[#111] text-[8px] font-black text-white">V</div>
-            <span className="text-[11px] text-[#999]">ventaflow.cl</span>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logo.png" alt="VentaFlow" className="h-6 w-auto" />
+            <span className="text-[11px] font-medium text-[#6b7c99]">ventaflow.cl</span>
           </div>
-          <span className="text-[11px] text-[#ccc]">© {new Date().getFullYear()} VentaFlow</span>
+          <p className="text-[11px] text-[#a3b1c6]">
+            © {new Date().getFullYear()} VentaFlow · Sistema de gestión comercial para PYMES
+          </p>
         </div>
       </footer>
     </main>
