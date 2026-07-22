@@ -342,7 +342,7 @@ export default function OrdersPage() {
       <div className="hidden overflow-hidden rounded-2xl border border-zinc-700/60 bg-zinc-900/50 xl:block">
         <div className="grid grid-cols-[1fr_1fr_1fr_1fr_1fr_1fr_180px] gap-4 border-b border-zinc-800 px-6 py-4 text-sm text-zinc-400">
           <div>N° Orden</div>
-          <div>Campus</div>
+          <div>Sucursal</div>
           <div>Método pago</div>
           <div>Total</div>
           <div>Estado</div>
@@ -426,9 +426,9 @@ export default function OrdersPage() {
 
               <div className="mt-4 grid grid-cols-2 gap-3 text-sm">
                 <div className="rounded-xl bg-zinc-950/50 px-3 py-2">
-                  <p className="text-[11px] uppercase tracking-wide text-zinc-500">Campus</p>
+                  <p className="text-[11px] uppercase tracking-wide text-zinc-500">Sucursal</p>
                   <p className="mt-1 text-white">
-                    {order.campus_id ? campusMap.get(order.campus_id) ?? 'Sin campus' : 'Sin campus'}
+                    {order.campus_id ? campusMap.get(order.campus_id) ?? 'Sin sucursal' : 'Sin sucursal'}
                   </p>
                 </div>
 

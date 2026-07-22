@@ -527,7 +527,7 @@ export default function ReadersManager() {
           <div className="flex h-9 w-9 items-center justify-center rounded-xl bg-violet-500/10 text-violet-400">
             <Store size={18} />
           </div>
-          <p className="mt-3 text-[10px] font-medium uppercase tracking-wider text-zinc-500">Campus</p>
+          <p className="mt-3 text-[10px] font-medium uppercase tracking-wider text-zinc-500">Sucursales</p>
           <p className="mt-0.5 text-2xl font-black text-violet-400">{campuses.length}</p>
         </div>
       </div>

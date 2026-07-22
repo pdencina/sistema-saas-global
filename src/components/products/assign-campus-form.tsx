@@ -101,7 +101,7 @@ export default function AssignCampusForm({
       <div className="rounded-2xl border border-zinc-700/60 bg-zinc-900/50 p-5">
         <div className="mb-5">
           <h2 className="text-lg font-semibold text-white">
-            Agregar producto a otro campus
+            Agregar producto a otra sucursal
           </h2>
           <p className="mt-1 text-sm text-zinc-500">
             Asigna este producto a una nueva sede con stock inicial.
@@ -153,7 +153,7 @@ export default function AssignCampusForm({
               disabled={loading}
               className="rounded-xl bg-amber-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-amber-400 disabled:opacity-60"
             >
-              {loading ? 'Asignando...' : 'Asignar a campus'}
+              {loading ? 'Asignando...' : 'Asignar a sucursal'}
             </button>
           </div>
         </div>

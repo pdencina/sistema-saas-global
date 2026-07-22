@@ -189,7 +189,7 @@ export default function CampusDetailPage() {
 
         {/* Equipo */}
         <div className="bg-zinc-800/30 border border-zinc-700/40 rounded-xl p-4">
-          <p className="text-sm font-medium text-white mb-3">Equipo del campus</p>
+          <p className="text-sm font-medium text-white mb-3">Equipo de la sucursal</p>
           {data.users.length === 0 ? (
             <p className="text-zinc-600 text-xs text-center py-6">Sin usuarios asignados</p>
           ) : data.users.map((u: any) => {
@@ -224,7 +224,7 @@ export default function CampusDetailPage() {
           </p>
           <div className="max-h-52 overflow-y-auto flex flex-col gap-0">
             {data.inv.length === 0 ? (
-              <p className="text-zinc-600 text-xs text-center py-6">Sin inventario asignado a este campus</p>
+              <p className="text-zinc-600 text-xs text-center py-6">Sin inventario asignado a esta sucursal</p>
             ) : data.inv.map((p: any) => (
               <div key={p.id} className="flex items-center justify-between py-1.5 border-b border-zinc-700/20 last:border-0">
                 <span className="text-xs text-zinc-300 truncate flex-1">{p.name}</span>

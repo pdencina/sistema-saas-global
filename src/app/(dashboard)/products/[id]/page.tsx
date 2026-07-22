@@ -315,7 +315,7 @@ export default function ProductDetailPage() {
       <div className={`grid gap-6 ${isSuperAdmin ? 'lg:grid-cols-2' : 'lg:grid-cols-1'}`}>
         <div className="rounded-2xl border border-zinc-700/60 bg-zinc-900/50 p-5">
           <h2 className="mb-4 text-sm font-semibold text-white">
-            Inventario actual por campus
+            Inventario actual por sucursal
           </h2>
 
           {inventoryRows.length === 0 ? (

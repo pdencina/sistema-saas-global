@@ -204,7 +204,7 @@ export default function CampusConsolidatedPage() {
           </div>
           <p className="mt-3 text-[10px] font-bold uppercase tracking-widest text-zinc-500">Ticket promedio</p>
           <p className="mt-0.5 text-2xl font-black text-green-400">{fmt(globalAvgTicket)}</p>
-          <p className="mt-1 text-xs text-zinc-500">Global todos los campus</p>
+          <p className="mt-1 text-xs text-zinc-500">Global todas las sucursales</p>
         </div>
 
         <div className="rounded-2xl border border-zinc-800 bg-zinc-900 p-4">
@@ -348,7 +348,7 @@ export default function CampusConsolidatedPage() {
 
             <div className="mt-5 space-y-4">
               <div>
-                <label className="text-xs font-medium text-zinc-400">Campus</label>
+                <label className="text-xs font-medium text-zinc-400">Sucursal</label>
                 <select
                   value={formData.campus_id}
                   onChange={(e) => setFormData({ ...formData, campus_id: e.target.value })}

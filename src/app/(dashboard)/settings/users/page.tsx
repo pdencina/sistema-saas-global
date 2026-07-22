@@ -321,7 +321,7 @@ export default function UsersPage() {
                   <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Usuario</th>
                   <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500 hidden sm:table-cell">Email</th>
                   <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Rol</th>
-                  <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Campus</th>
+                  <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Sucursal</th>
                   <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Estado</th>
                   <th className="text-left px-4 py-3 text-xs font-medium text-zinc-500">Acciones</th>
                 </tr>
@@ -488,12 +488,12 @@ export default function UsersPage() {
                   </div>
                 </div>
                 <div>
-                  <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Campus</label>
+                  <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Sucursal</label>
                   <div className="relative">
                     <MapPin size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
                     <select value={newCampus} onChange={e => setNewCampus(e.target.value)}
                       className="w-full bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-xl pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:border-amber-500 transition">
-                      <option value="">Sin campus</option>
+                      <option value="">Sin sucursal</option>
                       {campus.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
                   </div>
@@ -583,7 +583,7 @@ export default function UsersPage() {
                 </div>
 
                 <div>
-                  <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Campus</label>
+                  <label className="block text-[10px] text-zinc-500 uppercase tracking-widest mb-1.5">Sucursal</label>
                   <div className="relative">
                     <MapPin size={13} className="absolute left-3 top-1/2 -translate-y-1/2 text-zinc-500" />
                     <select
@@ -591,7 +591,7 @@ export default function UsersPage() {
                       onChange={e => setEditCampus(e.target.value)}
                       className="w-full bg-zinc-800 border border-zinc-700 text-zinc-300 rounded-xl pl-8 pr-3 py-2.5 text-sm focus:outline-none focus:border-amber-500 transition"
                     >
-                      <option value="">Sin campus</option>
+                      <option value="">Sin sucursal</option>
                       {campus.map(c => <option key={c.id} value={c.id}>{c.name}</option>)}
                     </select>
                   </div>
