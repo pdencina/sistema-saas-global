@@ -13,6 +13,7 @@ import {
   Loader2,
   MapPin,
   Star,
+  CreditCard,
 } from 'lucide-react'
 
 interface StoreInfo {
@@ -124,10 +125,8 @@ export default function StorePage() {
   }, [products, selectedCategory, search])
 
   function buildWhatsAppLink(product: Product) {
-    if (!store?.store_whatsapp) return '#'
-    const phone = store.store_whatsapp.replace(/[^0-9]/g, '')
     const msg = encodeURIComponent(`Hola, me interesa el producto: ${product.name} (${fmt(product.price)}). ¿Tienen stock disponible?`)
-    return `https://wa.me/${phone}?text=${msg}`
+    return `https://wa.me/?text=${msg}`
   }
 
   // Loading
@@ -173,7 +172,7 @@ export default function StorePage() {
 
           {store.store_whatsapp && (
             <a
-              href={`https://wa.me/${store.store_whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent('Hola, quiero hacer una consulta.')}`}
+              href={`https://wa.me/?text=${encodeURIComponent('Hola, quiero hacer una consulta.')}`}
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-1.5 rounded-lg bg-[#25D366] px-3 py-2 text-xs font-semibold text-white transition hover:bg-[#20bd5a]"
@@ -324,15 +323,26 @@ export default function StorePage() {
                     <div className="mt-auto pt-3">
                       <p className="text-lg font-bold text-[#1a2b4a]">{fmt(product.price)}</p>
 
-                      <a
-                        href={buildWhatsAppLink(product)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-2 flex w-full items-center justify-center gap-1.5 rounded-lg bg-[#25D366] py-2 text-xs font-semibold text-white transition hover:bg-[#20bd5a]"
-                      >
-                        <MessageCircle size={12} />
-                        Comprar
-                      </a>
+                      <div className="mt-2 flex gap-2">
+                        <a
+                          href={buildWhatsAppLink(product)}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#25D366] py-2 text-xs font-semibold text-white transition hover:bg-[#20bd5a]"
+                        >
+                          <MessageCircle size={12} />
+                          WhatsApp
+                        </a>
+                        <button
+                          className="flex flex-1 items-center justify-center gap-1.5 rounded-lg bg-[#2563EB] py-2 text-xs font-semibold text-white transition hover:bg-[#1d4ed8]"
+                          onClick={() => {
+                            window.alert('Integración WebPay en proceso. Por ahora, compra por WhatsApp.')
+                          }}
+                        >
+                          <CreditCard size={12} />
+                          WebPay
+                        </button>
+                      </div>
                     </div>
                   </div>
                 </motion.div>
