@@ -61,14 +61,14 @@ const FEATURES = [
 ]
 
 const VERTICALS = [
-  { name: 'Ferreterías', icon: '🔧', active: true },
-  { name: 'Cafeterías', icon: '☕', active: true },
-  { name: 'Tiendas de ropa', icon: '👕', active: true },
-  { name: 'Almacenes', icon: '🏪', active: true },
-  { name: 'Restaurantes', icon: '🍽️', active: true },
-  { name: 'Farmacias', icon: '💊', active: true },
-  { name: 'Librerías', icon: '📚', active: true },
-  { name: 'Bodegas', icon: '📦', active: true },
+  { name: 'Ferreterías', active: true },
+  { name: 'Cafeterías', active: true },
+  { name: 'Tiendas de ropa', active: true },
+  { name: 'Almacenes', active: true },
+  { name: 'Restaurantes', active: true },
+  { name: 'Farmacias', active: true },
+  { name: 'Librerías', active: true },
+  { name: 'Bodegas', active: true },
 ]
 
 const PLANS = [
@@ -350,10 +350,9 @@ export default function HomePage() {
                 key={v.name}
                 variants={fadeUp}
                 custom={i * 0.3}
-                className="group flex flex-col items-center gap-2 rounded-2xl border border-[#e8edf3] bg-white p-5 text-center transition hover:border-[#2563EB]/20 hover:shadow-lg hover:shadow-[#2563EB]/5"
+                className="group flex items-center justify-center rounded-2xl border border-[#e8edf3] bg-white px-5 py-4 text-center transition hover:border-[#2563EB]/20 hover:shadow-lg hover:shadow-[#2563EB]/5"
               >
-                <span className="text-2xl">{v.icon}</span>
-                <span className="text-xs font-semibold text-[#1a2b4a]">{v.name}</span>
+                <span className="text-sm font-semibold text-[#1a2b4a]">{v.name}</span>
               </motion.div>
             ))}
           </motion.div>
