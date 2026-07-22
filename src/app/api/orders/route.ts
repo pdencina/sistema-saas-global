@@ -72,6 +72,9 @@ export async function POST(req: NextRequest) {
     const clientName: string | null = String(body.client_name ?? '').trim() || null
     const clientEmail: string | null = String(body.client_email ?? '').trim().toLowerCase() || null
     const clientPhone: string | null = String(body.client_phone ?? '').trim() || null
+    const creditClientName: string | null = String(body.credit_client_name ?? '').trim() || null
+    const creditClientPhone: string | null = String(body.credit_client_phone ?? '').trim() || null
+    const creditNotes: string | null = String(body.credit_notes ?? '').trim() || null
     const requestedPaymentType: string | null = body.payment_type ?? null
     const requestedDepositPercentage = Number(body.deposit_percentage ?? 100)
     const requestedAmountPaid = Number(body.amount_paid ?? NaN)
@@ -272,6 +275,9 @@ export async function POST(req: NextRequest) {
         tracking_token: trackingToken,
         production_status: productionStatus,
         pickup_campus_id: pickupCampusId,
+        credit_client_name: creditClientName,
+        credit_client_phone: creditClientPhone,
+        credit_notes: creditNotes,
       })
       .select('id, order_number, status, created_at, total, discount, payment_method, notes, tracking_token, production_status, pickup_campus_id, amount_paid, balance_due, payment_status, payment_type, deposit_percentage')
       .single()

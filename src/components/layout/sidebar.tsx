@@ -31,6 +31,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Punto de Venta', href: '/pos', permKey: 'pos.view', icon: <ShoppingCart size={16} />, roles: ['voluntario', 'admin', 'adm_merch', 'super_admin'], section: 'Ventas' },
   { label: 'Órdenes', href: '/orders', permKey: 'orders.view', icon: <Receipt size={16} />, roles: ['voluntario', 'admin', 'adm_merch', 'super_admin'], section: 'Ventas' },
   { label: 'Pedidos entrega', href: '/production', permKey: 'deliveries.view', icon: <Truck size={16} />, roles: ['voluntario', 'admin', 'adm_merch', 'super_admin'], section: 'Ventas' },
+  { label: 'Cuentas por cobrar', href: '/credit', permKey: 'orders.view', icon: <DollarSign size={16} />, roles: ['admin', 'adm_merch', 'super_admin'], section: 'Ventas' },
   { label: 'Pantalla Producción', href: '/production/tv', icon: <Monitor size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Ventas' },
   { label: 'Pantalla Cliente', href: '/customer-display', icon: <MonitorSmartphone size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Ventas' },
   { label: 'Inventario', href: '/inventory', permKey: 'inventory.view', icon: <Package size={16} />, roles: ['admin', 'adm_merch', 'super_admin'], section: 'Inventario' },

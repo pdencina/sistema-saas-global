@@ -40,6 +40,10 @@ export default function CheckoutModal({
     discount,
   } = useCart()
 
+  const [creditMode, setCreditMode] = useState(false)
+  const [creditPhone, setCreditPhone] = useState('')
+  const [creditNotes, setCreditNotes] = useState('')
+
   const [loading, setLoading] = useState(false)
   const [confirmOpen, setConfirmOpen] = useState(false)
 
@@ -99,7 +103,13 @@ export default function CheckoutModal({
           campus_id: profile?.campus_id ?? null,
           client_name: clientName.trim(),
           client_email: clientEmail?.trim() || null,
-          payment_method: paymentMethod,
+          payment_method: creditMode ? 'efectivo' : paymentMethod,
+          payment_status: creditMode ? 'credit' : 'paid',
+          credit_client_name: creditMode ? clientName.trim() : null,
+          credit_client_phone: creditMode ? (creditPhone.trim() || null) : null,
+          credit_notes: creditMode ? (creditNotes.trim() || null) : null,
+          amount_paid: creditMode ? 0 : undefined,
+          balance_due: creditMode ? total() : undefined,
           discount: Number(discount ?? 0),
           notes: null,
           items: items.map((item: any) => ({
@@ -269,6 +279,41 @@ export default function CheckoutModal({
                   Debes completar cliente, productos y método de pago.
                 </p>
               )}
+
+              {/* Opción de crédito */}
+              <div className="rounded-2xl border border-zinc-800 bg-zinc-900/60 p-4">
+                <label className="flex cursor-pointer items-center justify-between">
+                  <div>
+                    <p className="text-sm font-semibold text-white">Venta a crédito</p>
+                    <p className="text-xs text-zinc-500">El cliente paga después</p>
+                  </div>
+                  <div
+                    className={`relative h-6 w-11 rounded-full transition ${creditMode ? 'bg-amber-500' : 'bg-zinc-700'}`}
+                    onClick={() => setCreditMode(!creditMode)}
+                  >
+                    <div className={`absolute top-0.5 h-5 w-5 rounded-full bg-white shadow transition-transform ${creditMode ? 'translate-x-[22px]' : 'translate-x-0.5'}`} />
+                  </div>
+                </label>
+
+                {creditMode && (
+                  <div className="mt-3 space-y-2 border-t border-zinc-800 pt-3">
+                    <input
+                      type="tel"
+                      value={creditPhone}
+                      onChange={e => setCreditPhone(e.target.value)}
+                      placeholder="Teléfono del cliente (opcional)"
+                      className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white placeholder-zinc-600 outline-none focus:border-amber-500"
+                    />
+                    <input
+                      type="text"
+                      value={creditNotes}
+                      onChange={e => setCreditNotes(e.target.value)}
+                      placeholder="Nota (ej: paga el viernes, apoderado 3B)"
+                      className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white placeholder-zinc-600 outline-none focus:border-amber-500"
+                    />
+                  </div>
+                )}
+              </div>
 
               <div className="flex gap-3">
                 <button
