@@ -97,7 +97,7 @@ export default function StorePage() {
     setProducts(productList)
 
     // Extraer categorías únicas
-    const cats = [...new Set(productList.map(p => p.category_name).filter(Boolean))] as string[]
+    const cats = Array.from(new Set(productList.map(p => p.category_name).filter(Boolean))) as string[]
     setCategories(cats.sort())
 
     setLoading(false)
