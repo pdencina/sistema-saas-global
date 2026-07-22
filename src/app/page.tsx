@@ -61,14 +61,14 @@ const FEATURES = [
 ]
 
 const VERTICALS = [
-  'Ferreterías',
-  'Cafeterías',
-  'Tiendas de ropa',
-  'Almacenes',
-  'Restaurantes',
-  'Farmacias',
-  'Librerías',
-  'Bodegas',
+  { name: 'Ferreterías', icon: '🔧', active: true },
+  { name: 'Cafeterías', icon: '☕', active: true },
+  { name: 'Tiendas de ropa', icon: '👕', active: true },
+  { name: 'Almacenes', icon: '🏪', active: true },
+  { name: 'Restaurantes', icon: '🍽️', active: true },
+  { name: 'Farmacias', icon: '💊', active: true },
+  { name: 'Librerías', icon: '📚', active: true },
+  { name: 'Bodegas', icon: '📦', active: true },
 ]
 
 const PLANS = [
@@ -324,55 +324,75 @@ export default function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="grid items-center gap-16 lg:grid-cols-2"
+            className="text-center"
           >
-            <div>
-              <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">
-                Rubros
-              </motion.p>
-              <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight text-[#1a2b4a] sm:text-3xl">
-                Un sistema, cualquier negocio.
-              </motion.h2>
-              <motion.p variants={fadeUp} custom={2} className="mt-4 max-w-md text-sm leading-relaxed text-[#6b7c99]">
-                La terminología, categorías y flujos se adaptan automáticamente a tu rubro.
-                No es un sistema genérico — se siente hecho para ti.
-              </motion.p>
+            <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">
+              Rubros
+            </motion.p>
+            <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight text-[#1a2b4a] sm:text-3xl">
+              Un sistema, cualquier negocio.
+            </motion.h2>
+            <motion.p variants={fadeUp} custom={2} className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-[#6b7c99]">
+              La plataforma se adapta automáticamente a tu rubro: terminología, categorías,
+              flujos y permisos — todo configurado para que se sienta hecho a medida.
+            </motion.p>
+          </motion.div>
 
-              <motion.div variants={fadeUp} custom={3} className="mt-8 rounded-xl border border-[#e8edf3] bg-[#f8fafc] p-5">
-                <p className="mb-3 text-xs font-semibold text-[#6b7c99]">Ejemplo de adaptación:</p>
-                <div className="space-y-2.5 text-sm">
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#6b7c99]">Ferretería</span>
-                    <span className="font-medium text-[#1a2b4a]">"Sucursales" · "Vendedores"</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#6b7c99]">Cafetería</span>
-                    <span className="font-medium text-[#1a2b4a]">"Locales" · "Cajeros"</span>
-                  </div>
-                  <div className="flex items-center justify-between">
-                    <span className="text-[#6b7c99]">Tienda de ropa</span>
-                    <span className="font-medium text-[#1a2b4a]">"Tiendas" · "Asesores"</span>
-                  </div>
-                </div>
+          {/* Grid de rubros */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            className="mx-auto mt-14 grid max-w-3xl grid-cols-2 gap-3 sm:grid-cols-4"
+          >
+            {VERTICALS.map((v, i) => (
+              <motion.div
+                key={v.name}
+                variants={fadeUp}
+                custom={i * 0.3}
+                className="group flex flex-col items-center gap-2 rounded-2xl border border-[#e8edf3] bg-white p-5 text-center transition hover:border-[#2563EB]/20 hover:shadow-lg hover:shadow-[#2563EB]/5"
+              >
+                <span className="text-2xl">{v.icon}</span>
+                <span className="text-xs font-semibold text-[#1a2b4a]">{v.name}</span>
               </motion.div>
-            </div>
+            ))}
+          </motion.div>
 
+          {/* Adaptación inteligente */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: '-50px' }}
+            className="mx-auto mt-14 max-w-2xl"
+          >
             <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: '-50px' }}
-              className="grid grid-cols-2 gap-3"
+              variants={fadeUp}
+              custom={0}
+              className="overflow-hidden rounded-2xl border border-[#e8edf3] bg-gradient-to-br from-[#f8fafc] to-white"
             >
-              {VERTICALS.map((v, i) => (
-                <motion.div
-                  key={v}
-                  variants={fadeUp}
-                  custom={i * 0.5}
-                  className="rounded-xl border border-[#e8edf3] bg-white px-5 py-4 text-sm font-medium text-[#1a2b4a] transition hover:border-[#14B8A6]/30 hover:shadow-sm"
-                >
-                  {v}
-                </motion.div>
-              ))}
+              <div className="border-b border-[#e8edf3] bg-white px-6 py-4">
+                <div className="flex items-center gap-2">
+                  <Globe size={16} className="text-[#14B8A6]" />
+                  <h3 className="text-sm font-bold text-[#1a2b4a]">Terminología inteligente</h3>
+                </div>
+                <p className="mt-1 text-xs text-[#6b7c99]">
+                  La interfaz se adapta al lenguaje de tu industria automáticamente.
+                </p>
+              </div>
+              <div className="divide-y divide-[#e8edf3]">
+                {[
+                  { rubro: 'Ferretería', terms: 'Sucursales · Vendedores · Clientes' },
+                  { rubro: 'Cafetería', terms: 'Locales · Cajeros · Consumidores' },
+                  { rubro: 'Tienda de ropa', terms: 'Tiendas · Asesores · Compradores' },
+                ].map((item) => (
+                  <div key={item.rubro} className="flex items-center justify-between px-6 py-3.5">
+                    <span className="text-sm font-medium text-[#1a2b4a]">{item.rubro}</span>
+                    <span className="rounded-full bg-[#f0f4f8] px-3 py-1 text-xs font-medium text-[#6b7c99]">
+                      {item.terms}
+                    </span>
+                  </div>
+                ))}
+              </div>
             </motion.div>
           </motion.div>
         </div>
