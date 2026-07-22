@@ -179,7 +179,7 @@ export default function ReadersManager() {
     }
 
     if (!campusId) {
-      toast.error('Selecciona un campus')
+      toast.error('Selecciona una sucursal')
       return
     }
 
