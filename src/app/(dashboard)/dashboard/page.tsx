@@ -3,6 +3,7 @@
 import { useEffect, useMemo, useState } from 'react'
 import { createClient } from '@/lib/supabase/client'
 import { useCampusSelector } from '@/lib/hooks/use-campus-selector'
+import SubscriptionBanner from '@/components/dashboard/subscription-banner'
 import WeeklyView from '@/components/dashboard/weekly-view'
 import {
   AreaChart, Area, BarChart, Bar,
@@ -409,6 +410,9 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-5 p-5 text-white">
+
+      {/* ── SUBSCRIPTION BANNER ─────────────────────────────────────────────── */}
+      <SubscriptionBanner />
 
       {/* ── HEADER ──────────────────────────────────────────────────────────── */}
       <div className="relative overflow-hidden rounded-2xl border border-zinc-800 bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 p-5">

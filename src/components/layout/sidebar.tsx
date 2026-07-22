@@ -8,7 +8,7 @@ import {
   ArrowRightLeft, User, Calculator, MapPin, Tags,
   X, Truck, Layers, PanelLeftClose, PanelLeftOpen,
   BrainCircuit, Sparkles, LineChart, Telescope, ChevronDown, DollarSign, TrendingUp,
-  ShieldCheck, Monitor, MonitorSmartphone,
+  ShieldCheck, Monitor, MonitorSmartphone, CreditCard,
 } from 'lucide-react'
 import { clsx } from 'clsx'
 import { ROLES } from '@/lib/config/roles'
@@ -50,6 +50,7 @@ const NAV_ITEMS: NavItem[] = [
   { label: 'Márgenes', href: '/pricing/margins', permKey: 'pricing.margins', icon: <TrendingUp size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Gestión' },
   // { label: 'Cierre de caja', href: '/close-day', permKey: 'close_day.view', icon: <Calculator size={16} />, roles: ['admin', 'adm_merch', 'super_admin'], section: 'Gestión' },
   { label: 'Usuarios', href: '/settings/users', icon: <Users size={16} />, roles: ['super_admin'], section: 'Configuración' },
+  { label: 'Suscripciones', href: '/settings/subscriptions', icon: <CreditCard size={16} />, roles: ['super_admin'], section: 'Configuración' },
   { label: 'Sucursales', href: '/settings/campus', icon: <MapPin size={16} />, roles: ['super_admin'], section: 'Configuración' },
   { label: 'Categorías', href: '/settings/categories', permKey: 'categories.view', icon: <Tags size={16} />, roles: ['adm_merch', 'super_admin'], section: 'Configuración' },
   { label: 'Módulos', href: '/settings/modules', icon: <Layers size={16} />, roles: ['super_admin'], section: 'Configuración' },
