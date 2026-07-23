@@ -71,58 +71,6 @@ const VERTICALS = [
   { name: 'Bodegas', active: true },
 ]
 
-const PLANS = [
-  {
-    name: 'Esencial',
-    price: '39.990',
-    desc: 'Todo lo que necesitas para operar',
-    features: [
-      '1 local',
-      '5 usuarios',
-      'POS completo',
-      'Inventario en tiempo real',
-      'Reportes de ventas',
-      'Notificaciones por email',
-      'Voucher digital por email',
-      'Categorías y productos ilimitados',
-    ],
-    highlighted: false,
-  },
-  {
-    name: 'Crecimiento',
-    price: '79.990',
-    desc: 'Para negocios que escalan',
-    features: [
-      '5 locales',
-      '15 usuarios',
-      'Todo Esencial +',
-      'WhatsApp automático',
-      'Pagos con tarjeta (SumUp)',
-      'Transferencias entre locales',
-      'Analytics avanzados',
-      'Promociones y descuentos',
-      'Sesiones de caja',
-    ],
-    highlighted: true,
-  },
-  {
-    name: 'Enterprise',
-    price: 'A medida',
-    desc: 'Operaciones sin límites',
-    features: [
-      'Locales ilimitados',
-      'Usuarios ilimitados',
-      'Todo Crecimiento +',
-      'IA + Forecast de demanda',
-      'API dedicada',
-      'Onboarding personalizado',
-      'Soporte prioritario',
-      'SLA garantizado',
-    ],
-    highlighted: false,
-  },
-]
-
 export default function HomePage() {
   const [showSplash, setShowSplash] = useState(true)
 
@@ -404,79 +352,61 @@ export default function HomePage() {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: '-100px' }}
-            className="text-center"
+            className="grid items-center gap-16 lg:grid-cols-2"
           >
-            <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">
-              Planes
-            </motion.p>
-            <motion.h2 variants={fadeUp} custom={1} className="mt-3 text-2xl font-bold tracking-tight text-[#1a2b4a] sm:text-3xl">
-              Precio justo, sin letra chica.
-            </motion.h2>
-            <motion.p variants={fadeUp} custom={2} className="mt-3 text-sm text-[#6b7c99]">
-              Planes claros desde el primer día. Sin costos ocultos.
-            </motion.p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: '-50px' }}
-            className="mx-auto mt-14 grid max-w-4xl gap-5 lg:grid-cols-3"
-          >
-            {PLANS.map((plan, i) => (
-              <motion.div
-                key={plan.name}
-                variants={fadeUp}
-                custom={i}
-                className={`relative rounded-2xl border p-7 ${
-                  plan.highlighted
-                    ? 'border-[#2563EB]/30 bg-gradient-to-b from-[#1a2b4a] to-[#0f1a2e] text-white shadow-xl shadow-[#2563EB]/10'
-                    : 'border-[#e8edf3] bg-white'
-                }`}
-              >
-                {plan.highlighted && (
-                  <div className="absolute -top-3 left-5 rounded-full bg-gradient-to-r from-[#2563EB] to-[#14B8A6] px-3 py-0.5 text-[11px] font-bold text-white">
-                    Popular
-                  </div>
-                )}
-
-                <h3 className="text-lg font-bold">{plan.name}</h3>
-                <p className={`mt-1 text-xs ${plan.highlighted ? 'text-blue-200' : 'text-[#6b7c99]'}`}>
-                  {plan.desc}
-                </p>
-
-                <div className="mt-5 flex items-baseline gap-1">
-                  {plan.price !== 'A medida' ? (
-                    <>
-                      <span className="text-2xl font-bold">${plan.price}</span>
-                      <span className={`text-xs ${plan.highlighted ? 'text-blue-200' : 'text-[#6b7c99]'}`}>/mes</span>
-                    </>
-                  ) : (
-                    <span className="text-2xl font-bold">{plan.price}</span>
-                  )}
-                </div>
-
-                <ul className="mt-6 space-y-2.5">
-                  {plan.features.map((f) => (
-                    <li key={f} className={`flex items-center gap-2 text-sm ${plan.highlighted ? 'text-blue-100' : 'text-[#6b7c99]'}`}>
-                      <CheckCircle2 size={14} className={`shrink-0 ${plan.highlighted ? 'text-[#14B8A6]' : 'text-[#2563EB]'}`} />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-
+            {/* Lado izquierdo */}
+            <div>
+              <motion.p variants={fadeUp} custom={0} className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">
+                Planes
+              </motion.p>
+              <motion.h2 variants={fadeUp} custom={1} className="mt-4 text-3xl font-bold leading-tight tracking-tight text-[#1a2b4a] sm:text-4xl">
+                Una tarifa fija mensual,{' '}
+                <span className="text-[#6b7c99]">a la medida de tu negocio.</span>
+              </motion.h2>
+              <motion.p variants={fadeUp} custom={2} className="mt-5 max-w-md text-sm leading-relaxed text-[#6b7c99]">
+                El precio depende de tu operación, tus canales y lo que necesitas gestionar.
+                Después de la demo recibes una propuesta clara, con todo incluido.
+              </motion.p>
+              <motion.div variants={fadeUp} custom={3} className="mt-8">
                 <Link
                   href="#contacto"
-                  className={`mt-8 block w-full rounded-lg py-2.5 text-center text-sm font-semibold transition ${
-                    plan.highlighted
-                      ? 'bg-gradient-to-r from-[#2563EB] to-[#14B8A6] text-white hover:opacity-90'
-                      : 'bg-[#f0f4f8] text-[#1a2b4a] hover:bg-[#e4eaf1]'
-                  }`}
+                  className="group inline-flex items-center gap-2 rounded-xl bg-gradient-to-r from-[#2563EB] to-[#14B8A6] px-6 py-3.5 text-sm font-semibold text-white shadow-lg shadow-[#2563EB]/20 transition hover:opacity-90"
                 >
-                  Contáctanos
+                  Quiero una demo
+                  <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
                 </Link>
               </motion.div>
-            ))}
+            </div>
+
+            {/* Lado derecho — lo que incluye */}
+            <motion.div
+              variants={fadeUp}
+              custom={2}
+              className="rounded-2xl border border-[#e8edf3] bg-white p-8"
+            >
+              <p className="text-xs font-semibold uppercase tracking-widest text-[#6b7c99]">
+                Siempre incluido
+              </p>
+
+              <ul className="mt-6 space-y-4">
+                {[
+                  'Punto de Venta completo con múltiples medios de pago',
+                  'Inventario en tiempo real con alertas automáticas',
+                  'Reportes de ventas, productos y rendimiento',
+                  'Gestión multi-sucursal desde una sola vista',
+                  'Usuarios ilimitados con permisos por rol',
+                  'Notificaciones por email y voucher digital',
+                  'WhatsApp integrado para clientes',
+                  'Soporte e implementación incluidos',
+                  'Sin contratos de permanencia',
+                ].map((item) => (
+                  <li key={item} className="flex items-start gap-3">
+                    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-[#14B8A6]" />
+                    <span className="text-sm leading-relaxed text-[#1a2b4a]">{item}</span>
+                  </li>
+                ))}
+              </ul>
+            </motion.div>
           </motion.div>
         </div>
       </section>
