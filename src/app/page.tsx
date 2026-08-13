@@ -130,9 +130,14 @@ export default function HomePage() {
         {/* Nav */}
         <header className="fixed top-0 z-50 w-full bg-white/80 backdrop-blur-2xl border-b border-slate-100">
           <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3">
-            <Link href="/" className="flex items-center">
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/ventaflow-favicon-transparent.png" alt="VentaFlow" className="h-9 w-auto" />
+            <Link href="/" className="flex items-center gap-2">
+              <svg width="28" height="28" viewBox="0 0 120 120">
+                <path style={{ fill: '#1e3a5f' }} d="M14 20 L60 100 L106 20 L86 20 L60 66 L34 20 Z"/>
+                <path style={{ fill: '#2fbfa0' }} d="M60 66 L94 22 L94 40 L110 40 Z"/>
+              </svg>
+              <span className="text-base font-extrabold tracking-tight" style={{ letterSpacing: '-0.02em' }}>
+                <span style={{ color: '#1e3a5f' }}>Venta</span><span style={{ color: '#2fbfa0' }}>Flow</span>
+              </span>
             </Link>
 
             <nav className="hidden items-center gap-8 text-[13px] font-medium text-slate-500 md:flex">
@@ -513,8 +518,15 @@ export default function HomePage() {
         {/* Footer */}
         <footer className="border-t border-slate-100 py-8">
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 sm:flex-row">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/ventaflow-favicon-transparent.png" alt="VentaFlow" className="h-7 w-auto" />
+            <div className="flex items-center gap-2">
+              <svg width="22" height="22" viewBox="0 0 120 120">
+                <path style={{ fill: '#1e3a5f' }} d="M14 20 L60 100 L106 20 L86 20 L60 66 L34 20 Z"/>
+                <path style={{ fill: '#2fbfa0' }} d="M60 66 L94 22 L94 40 L110 40 Z"/>
+              </svg>
+              <span className="text-xs font-extrabold" style={{ letterSpacing: '-0.02em' }}>
+                <span style={{ color: '#1e3a5f' }}>Venta</span><span style={{ color: '#2fbfa0' }}>Flow</span>
+              </span>
+            </div>
             <p className="text-[11px] text-slate-400">
               © {new Date().getFullYear()} VentaFlow · ventaflow.cl
             </p>
