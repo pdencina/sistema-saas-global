@@ -81,3 +81,11 @@ html.light-mode .border-zinc-700 { border-color: #d4d4d8 !important; }
 html.light-mode .border-zinc-800\/60 { border-color: rgba(212,212,216,0.8) !important; }
 html.light-mode .border-zinc-700\/40 { border-color: rgba(212,212,216,0.6) !important; }
 html.light-mode .rounded-tl-2xl { background-color: #f0f0f1 !important; }
+
+/* VentaFlow logo animation */
+@keyframes vf-draw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes fadeIn {
+  to { opacity: 1; }
+}

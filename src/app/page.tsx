@@ -101,16 +101,24 @@ export default function HomePage() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
-            <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ duration: 0.5, ease: 'easeOut' }}
-              className="flex flex-col items-center gap-3"
-            >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="VentaFlow" className="h-14 w-auto" />
-              <p className="text-xs font-medium text-[#6b7c99]">Gestiona. Vende. Crece.</p>
-            </motion.div>
+            <div className="flex items-center gap-2.5">
+              <svg width="40" height="40" viewBox="0 0 120 120">
+                <path
+                  className="animate-[vf-draw_1.1s_ease_forwards]"
+                  style={{ stroke: '#1e3a5f', strokeWidth: 4, fill: '#1e3a5f', fillOpacity: 0, strokeDasharray: 400, strokeDashoffset: 400 }}
+                  d="M14 20 L60 100 L106 20 L86 20 L60 66 L34 20 Z"
+                />
+                <path
+                  className="animate-[vf-draw_0.6s_ease_forwards_0.7s]"
+                  style={{ stroke: '#2fbfa0', strokeWidth: 4, fill: '#2fbfa0', fillOpacity: 0, strokeDasharray: 160, strokeDashoffset: 160 }}
+                  d="M60 66 L94 22 L94 40 L110 40 Z"
+                />
+              </svg>
+              <span className="text-xl font-extrabold tracking-tight" style={{ opacity: 0, animation: 'fadeIn 0.5s ease forwards 1.5s' }}>
+                <span style={{ color: '#1e3a5f' }}>Venta</span>
+                <span style={{ color: '#2fbfa0' }}>Flow</span>
+              </span>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>
@@ -121,7 +129,7 @@ export default function HomePage() {
           <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
             <Link href="/" className="flex items-center gap-2.5">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="VentaFlow" className="h-8 w-auto" />
+              <img src="/ventaflow-logo-dark.png" alt="VentaFlow" className="h-8 w-auto" />
               <span className="text-sm font-bold tracking-tight">VentaFlow</span>
             </Link>
 
@@ -453,7 +461,7 @@ export default function HomePage() {
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 sm:flex-row">
             <div className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/logo.png" alt="VentaFlow" className="h-6 w-auto" />
+              <img src="/ventaflow-logo-dark.png" alt="VentaFlow" className="h-6 w-auto" />
               <span className="text-[11px] font-medium text-[#6b7c99]">ventaflow.cl</span>
             </div>
             <p className="text-[11px] text-[#a3b1c6]">

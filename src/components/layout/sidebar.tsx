@@ -130,7 +130,7 @@ export default function Sidebar({
         <div className={clsx('flex items-center gap-2.5', isCollapsed && 'justify-center')}>
           <div className="flex h-8 w-8 shrink-0 items-center justify-center overflow-hidden rounded-lg bg-black">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src={tenant.branding.logoUrl} alt={tenant.branding.name} className="h-6 w-auto" />
+            <img src="/ventaflow-logo-light.png" alt="VentaFlow" className="h-6 w-auto" />
           </div>
 
           {!isCollapsed && (

@@ -17,9 +17,9 @@ export const metadata: Metadata = {
   creator: branding.name,
   icons: {
     icon: [
-      { url: branding.faviconUrl, type: 'image/svg+xml' },
+      { url: '/ventaflow-favicon.png', type: 'image/png' },
     ],
-    apple: '/icon.svg',
+    apple: '/ventaflow-app-icon.png',
   },
   openGraph: {
     type: 'website',
@@ -49,8 +49,8 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head>
-        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-        <link rel="apple-touch-icon" href="/icon.svg" />
+        <link rel="icon" href="/ventaflow-favicon.png" type="image/png" />
+        <link rel="apple-touch-icon" href="/ventaflow-app-icon.png" />
         <meta name="theme-color" content="#18181b" />
       </head>
       <body>
