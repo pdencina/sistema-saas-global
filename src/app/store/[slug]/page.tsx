@@ -14,6 +14,8 @@ import {
   MapPin,
   Star,
   CreditCard,
+  CheckCircle2,
+  ArrowUpRight,
 } from 'lucide-react'
 
 interface StoreInfo {
@@ -353,14 +355,73 @@ export default function StorePage() {
       </section>
 
       {/* Footer */}
-      <footer className="border-t border-[#e8edf3] py-8">
-        <div className="mx-auto max-w-6xl px-5 text-center">
-          <p className="text-xs text-[#a3b1c6]">
-            {storeName} · Tienda potenciada por VentaFlow
-          </p>
-          <p className="mt-1 text-[10px] text-[#d1dbe8]">
-            ventaflow.cl
-          </p>
+      <footer className="border-t border-[#e8edf3] bg-[#f8fafc] py-12">
+        <div className="mx-auto max-w-6xl px-5">
+          {/* Sección: VentaFlow para cualquier negocio */}
+          <div className="mb-10 text-center">
+            <p className="text-xs font-semibold uppercase tracking-widest text-[#14B8A6]">Potenciado por VentaFlow</p>
+            <h3 className="mt-2 text-lg font-bold text-[#1a2b4a]">El sistema detrás de esta tienda funciona para cualquier negocio</h3>
+            <p className="mx-auto mt-2 max-w-md text-xs leading-relaxed text-[#6b7c99]">
+              Hamburguesas, almacenes, ferreterías, cafeterías, tiendas de ropa — una sola plataforma que se adapta.
+            </p>
+          </div>
+
+          {/* Grid de rubros */}
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-4 mb-10">
+            {[
+              { name: 'Hamburguesas', desc: 'Food trucks y carritos' },
+              { name: 'Almacenes', desc: 'Negocios de barrio' },
+              { name: 'Ferreterías', desc: 'Multi-sucursal' },
+              { name: 'Cafeterías', desc: 'Barra y delivery' },
+              { name: 'Tiendas de ropa', desc: 'Tallas y colores' },
+              { name: 'Instrumentos', desc: 'Como esta tienda' },
+              { name: 'Minimarkets', desc: 'Alto volumen' },
+              { name: 'Tu negocio', desc: 'Se adapta a ti' },
+            ].map(v => (
+              <div key={v.name} className="rounded-xl border border-[#e8edf3] bg-white p-3 text-center">
+                <p className="text-xs font-semibold text-[#1a2b4a]">{v.name}</p>
+                <p className="mt-0.5 text-[10px] text-[#a3b1c6]">{v.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Qué incluye + CTA */}
+          <div className="grid gap-8 sm:grid-cols-2">
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-[#6b7c99]">Cada tienda incluye</p>
+              <ul className="space-y-2 text-xs text-[#6b7c99]">
+                <li className="flex items-center gap-2"><CheckCircle2 size={12} className="text-[#14B8A6]" />Catálogo online con link propio</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={12} className="text-[#14B8A6]" />Dashboard de gestión completo</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={12} className="text-[#14B8A6]" />POS para venta presencial</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={12} className="text-[#14B8A6]" />Inventario en tiempo real</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={12} className="text-[#14B8A6]" />Reportes de ventas y rendimiento</li>
+                <li className="flex items-center gap-2"><CheckCircle2 size={12} className="text-[#14B8A6]" />WhatsApp para notificaciones</li>
+              </ul>
+            </div>
+
+            <div className="flex flex-col justify-center items-center text-center sm:items-start sm:text-left">
+              <p className="text-sm font-semibold text-[#1a2b4a] mb-2">¿Quieres tu propia tienda online + sistema de gestión?</p>
+              <p className="text-xs text-[#6b7c99] mb-4">En minutos tienes todo funcionando. Sin contratos, sin instalaciones.</p>
+              <a
+                href="https://ventaflow.cl"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-1.5 rounded-lg bg-gradient-to-r from-[#2563EB] to-[#14B8A6] px-5 py-2.5 text-xs font-semibold text-white transition hover:opacity-90"
+              >
+                Conocer VentaFlow
+                <ArrowUpRight size={12} />
+              </a>
+            </div>
+          </div>
+
+          <div className="mt-10 border-t border-[#e8edf3] pt-6 flex flex-col items-center justify-between gap-3 sm:flex-row">
+            <p className="text-[11px] text-[#a3b1c6]">
+              {storeName} · Potenciado por VentaFlow
+            </p>
+            <p className="text-[10px] text-[#d1dbe8]">
+              ventaflow.cl
+            </p>
+          </div>
         </div>
       </footer>
     </main>
