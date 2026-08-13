@@ -102,19 +102,11 @@ export default function HomePage() {
             transition={{ duration: 0.4, ease: 'easeOut' }}
           >
             <div className="flex items-center gap-2.5">
-              <svg width="40" height="40" viewBox="0 0 120 120">
-                <path
-                  className="animate-[vf-draw_1.1s_ease_forwards]"
-                  style={{ stroke: '#1e3a5f', strokeWidth: 4, fill: '#1e3a5f', fillOpacity: 0, strokeDasharray: 400, strokeDashoffset: 400 }}
-                  d="M14 20 L60 100 L106 20 L86 20 L60 66 L34 20 Z"
-                />
-                <path
-                  className="animate-[vf-draw_0.6s_ease_forwards_0.7s]"
-                  style={{ stroke: '#2fbfa0', strokeWidth: 4, fill: '#2fbfa0', fillOpacity: 0, strokeDasharray: 160, strokeDashoffset: 160 }}
-                  d="M60 66 L94 22 L94 40 L110 40 Z"
-                />
+              <svg width="38" height="38" viewBox="0 0 120 120">
+                <path className="vf-path" d="M14 20 L60 100 L106 20 L86 20 L60 66 L34 20 Z"/>
+                <path className="vf-arrow" d="M60 66 L94 22 L94 40 L110 40 Z"/>
               </svg>
-              <span className="text-xl font-extrabold tracking-tight" style={{ opacity: 0, animation: 'fadeIn 0.5s ease forwards 1.5s' }}>
+              <span className="vf-word text-xl font-extrabold tracking-tight" style={{ letterSpacing: '-0.02em' }}>
                 <span style={{ color: '#1e3a5f' }}>Venta</span>
                 <span style={{ color: '#2fbfa0' }}>Flow</span>
               </span>
@@ -444,12 +436,6 @@ export default function HomePage() {
               >
                 Escribir por WhatsApp
                 <ArrowUpRight size={14} className="transition group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-              </a>
-              <a
-                href="mailto:hola@ventaflow.cl"
-                className="text-sm font-medium text-[#6b7c99] transition hover:text-[#1a2b4a]"
-              >
-                hola@ventaflow.cl
               </a>
             </motion.div>
           </motion.div>
