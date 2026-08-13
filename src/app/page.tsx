@@ -192,13 +192,12 @@ export default function HomePage() {
                   Quiero una demo gratis
                   <ArrowRight size={15} className="transition group-hover:translate-x-0.5" />
                 </Link>
-                <Link
-                  href="/store/soundwave"
+                <a
+                  href="#producto"
                   className="flex items-center gap-2 rounded-xl border border-[#e8edf3] bg-white px-7 py-3.5 text-sm font-semibold text-[#1a2b4a] transition hover:border-[#2563EB]/30 hover:shadow-md"
                 >
-                  <Store size={15} />
-                  Ver tienda demo
-                </Link>
+                  Ver cómo funciona
+                </a>
               </motion.div>
 
               {/* Trust badges */}
