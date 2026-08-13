@@ -129,7 +129,7 @@ export default function HomePage() {
           <div className="mx-auto flex max-w-6xl items-center justify-between px-5 py-3.5">
             <Link href="/" className="flex items-center">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/ventaflow-logo-dark.png" alt="VentaFlow" className="h-9 w-auto" />
+              <img src="/ventaflow-favicon-transparent.png" alt="VentaFlow" className="h-9 w-auto" />
             </Link>
 
             <nav className="hidden items-center gap-7 text-[13px] font-medium text-[#6b7c99] md:flex">
@@ -460,7 +460,7 @@ export default function HomePage() {
           <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-3 px-5 sm:flex-row">
             <div className="flex items-center gap-2">
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/ventaflow-logo-dark.png" alt="VentaFlow" className="h-6 w-auto" />
+              <img src="/ventaflow-favicon-transparent.png" alt="VentaFlow" className="h-6 w-auto" />
             </div>
             <p className="text-[11px] text-[#a3b1c6]">
               © {new Date().getFullYear()} VentaFlow · Sistema de gestión comercial para PYMES

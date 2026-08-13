@@ -81,7 +81,7 @@ export default function LoginPage() {
           {/* Logo */}
           <div className="mb-8">
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/ventaflow-logo-dark.png" alt="VentaFlow" className="mb-4 h-10 w-auto" />
+            <img src="/ventaflow-favicon-transparent.png" alt="VentaFlow" className="mb-4 h-10 w-auto" />
             <h1 className="text-xl font-bold tracking-tight text-[#1a2b4a]">Bienvenido de vuelta</h1>
             <p className="mt-1 text-sm text-[#6b7c99]">Ingresa a tu cuenta de VentaFlow</p>
           </div>
